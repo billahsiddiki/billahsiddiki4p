@@ -5,820 +5,266 @@
 <title>Baki Billah Siddiki — Personal 4P's Marketing Mix</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --pink:    #E2136E;
-  --pink-dk: #B50E58;
-  --ink:     #0D0D0D;
-  --cream:   #F8F7F4;
-  --paper:   #FFFFFF;
-  --mid:     #5C5C5C;
-  --dim:     #888888;
-  --rule:    #E0DDD8;
-  --serif:   'EB Garamond', Georgia, serif;
-  --sans:    'Barlow', Helvetica Neue, Arial, sans-serif;
-}
-
-html, body {
-  min-height: 100%;
-  background: #EBEBEB;
-  font-family: var(--sans);
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-}
-
-.page {
-  display: flex;
-  width: 1160px;
-  min-height: 1640px;
-  margin: 32px auto;
-  box-shadow: 0 4px 40px rgba(0,0,0,0.18);
-  background: var(--paper);
-}
-
-/* ═══════════════════════════════════════
-   SIDEBAR
-═══════════════════════════════════════ */
-.rail {
-  width: 230px;
-  min-height: 100%;
-  background: var(--pink);
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 32px 24px;
-  position: relative;
-}
-
-.rail::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 1px;
-  height: 100%;
-  background: var(--pink-dk);
-}
-
-.rail-logo-wrap {
-  margin-bottom: 6px;
-}
-
-.rail-logo {
-  height: 28px;
-  filter: brightness(0) invert(1);
-  display: block;
-}
-
-.rail-logo-fallback {
-  font-family: var(--sans);
-  font-size: 22px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.5px;
-}
-
-.rail-target-label {
-  font-family: var(--sans);
-  font-size: 8.5px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  color: rgba(255,255,255,0.55);
-  text-transform: uppercase;
-  margin-bottom: 32px;
-}
-
-.rail-divider {
-  height: 0.5px;
-  background: rgba(255,255,255,0.25);
-  margin: 22px 0;
-}
-
-.rail-name {
-  font-family: var(--serif);
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1.08;
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.rail-tagline {
-  font-family: var(--serif);
-  font-size: 12.5px;
-  font-style: italic;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.55;
-}
-
-.rail-meta-label {
-  font-family: var(--sans);
-  font-size: 7.5px;
-  font-weight: 600;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 2px;
-}
-
-.rail-meta-value {
-  font-family: var(--sans);
-  font-size: 12.5px;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 11px;
-}
-
-.rail-meta-value-sm {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.88);
-  line-height: 1.5;
-  margin-bottom: 11px;
-}
-
-.rail-pos-title {
-  font-family: var(--sans);
-  font-size: 7.5px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 4px;
-}
-
-.rail-pos-value {
-  font-family: var(--sans);
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.45;
-}
-
-.rail-course-block {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.rail-iba {
-  height: 30px;
-  filter: brightness(0) invert(1);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.rail-iba-fallback {
-  font-family: var(--sans);
-  font-size: 9px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.5px;
-  line-height: 1.3;
-  flex-shrink: 0;
-}
-
-.rail-course-code {
-  font-family: var(--sans);
-  font-size: 9px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.5px;
-  margin-bottom: 2px;
-}
-
-.rail-course-name {
-  font-family: var(--sans);
-  font-size: 10.5px;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.35;
-  margin-bottom: 2px;
-}
-
-.rail-course-school {
-  font-family: var(--sans);
-  font-size: 9.5px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.6);
-}
-
-/* ═══════════════════════════════════════
-   MAIN CANVAS
-═══════════════════════════════════════ */
-.canvas {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background: var(--paper);
-  padding: 0;
-}
-
-/* MASTHEAD */
-.masthead {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: 28px 36px 16px;
-  border-bottom: 1.5px solid var(--ink);
-}
-
-.mast-eyebrow {
-  font-family: var(--sans);
-  font-size: 8.5px;
-  font-weight: 600;
-  letter-spacing: 2.8px;
-  text-transform: uppercase;
-  color: var(--pink);
-  margin-bottom: 4px;
-}
-
-.mast-title {
-  font-family: var(--serif);
-  font-size: 26px;
-  font-weight: 400;
-  letter-spacing: -0.3px;
-  color: var(--ink);
-  line-height: 1;
-}
-
-.mast-right {
-  text-align: right;
-}
-
-.mast-marks-label {
-  font-family: var(--sans);
-  font-size: 8px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-bottom: 2px;
-}
-
-.mast-marks-val {
-  font-family: var(--serif);
-  font-size: 19px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-/* P SECTIONS */
-.p-section {
-  padding: 22px 36px 20px;
-  border-bottom: 0.5px solid var(--rule);
-}
-
-.p-section:last-child {
-  border-bottom: none;
-}
-
-.p-head {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 0.5px solid var(--rule);
-}
-
-.p-num {
-  font-family: var(--serif);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--pink);
-  letter-spacing: 0.5px;
-  flex-shrink: 0;
-  align-self: flex-start;
-  padding-top: 3px;
-}
-
-.p-title {
-  font-family: var(--serif);
-  font-size: 21px;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--ink);
-  line-height: 1;
-}
-
-.p-sub {
-  font-family: var(--sans);
-  font-size: 10.5px;
-  font-weight: 400;
-  color: var(--dim);
-  margin-left: auto;
-  align-self: center;
-}
-
-/* TWO-COLUMN BODY */
-.p-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-}
-
-/* CATEGORY HEADING */
-.cat {
-  font-family: var(--sans);
-  font-size: 7.5px;
-  font-weight: 700;
-  letter-spacing: 2.2px;
-  text-transform: uppercase;
-  color: var(--pink);
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: 0.5px solid var(--rule);
-}
-
-.cat + .cat { margin-top: 18px; }
-.cat.mt { margin-top: 18px; }
-
-/* ITEM ROW */
-.item {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 0.5px solid #F0EDE8;
-}
-
-.item:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.item-label {
-  display: block;
-  font-family: var(--sans);
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: var(--mid);
-  margin-bottom: 3px;
-}
-
-.item-text {
-  font-family: var(--sans);
-  font-size: 11.5px;
-  font-weight: 400;
-  color: var(--ink);
-  line-height: 1.58;
-}
-
-.item-text b {
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.up { color: #1A7A45; font-weight: 600; }
-.pk { color: var(--pink); font-weight: 600; }
-
-/* TAGS */
-.tag {
-  display: inline-block;
-  font-family: var(--sans);
-  font-size: 7.5px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 2.5px 7px;
-  margin-bottom: 4px;
-  line-height: 1;
-}
-
-.tag-pink  { background: var(--pink); color: #fff; }
-.tag-ink   { background: var(--ink);  color: #fff; }
-.tag-gold  { background: #B8922E; color: #fff; }
-.tag-teal  { background: #0A6E6E; color: #fff; }
-
-/* VALUE ROWS (Price section) */
-.val-row {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  margin-bottom: 9px;
-  padding-bottom: 9px;
-  border-bottom: 0.5px solid #F0EDE8;
-}
-
-.val-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-
-.val-tag {
-  font-family: var(--sans);
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  background: var(--cream);
-  color: var(--mid);
-  padding: 3px 6px;
-  flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 1px;
-}
-
-.val-text {
-  font-family: var(--sans);
-  font-size: 11.5px;
-  font-weight: 400;
-  color: var(--ink);
-  line-height: 1.55;
-}
-
-.val-text b { font-weight: 600; }
-
-/* DUAL SECTION (P3 + P4) */
-.dual-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 0.5px solid var(--rule);
-}
-
-.half {
-  border-bottom: none;
-}
-
-.half:first-child {
-  border-right: 0.5px solid var(--rule);
-  padding-right: 28px;
-}
-
-.half:last-child {
-  padding-left: 28px;
-}
-
-/* COMPACT ITEMS */
-.item-c {
-  font-family: var(--sans);
-  font-size: 11.5px;
-  font-weight: 400;
-  color: var(--ink);
-  line-height: 1.58;
-  margin-bottom: 9px;
-  padding-bottom: 9px;
-  border-bottom: 0.5px solid #F0EDE8;
-}
-
-.item-c:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.item-c b { font-weight: 600; }
-
-a.lnk {
-  color: var(--pink);
-  text-decoration: none;
-  border-bottom: 0.5px solid rgba(226,19,110,0.3);
-}
-
-/* AVAIL BADGE */
-.avail-badge {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #FDF0F6;
-  border-left: 2px solid var(--pink);
-  padding: 9px 12px;
-  margin-bottom: 9px;
-}
-
-.avail-icon {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--pink);
-  flex-shrink: 0;
-}
-
-.avail-main {
-  display: block;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 1px;
-}
-
-.avail-sub {
-  display: block;
-  font-family: var(--sans);
-  font-size: 10.5px;
-  color: var(--mid);
-  line-height: 1.4;
-}
-
-/* FOOTER */
-.foot {
-  padding: 14px 36px;
-  display: flex;
-  align-items: center;
-  gap: 0;
-  border-top: 1.5px solid var(--ink);
-  margin-top: auto;
-}
-
-.foot span {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 400;
-  color: var(--mid);
-}
-
-.foot span b { font-weight: 600; color: var(--ink); }
-
-.foot-dot {
-  margin: 0 10px;
-  color: var(--rule) !important;
-}
-
-@media print {
-  body { background: #fff; }
-  .page { margin: 0; box-shadow: none; width: 100%; }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <div class="page">
 
-  <!-- ══════════════════════════════
-       SIDEBAR
-  ══════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════
+       LEFT RAIL — bKash-pink branded sidebar
+       ═══════════════════════════════════════════════════ -->
   <aside class="rail">
-
-    <div class="rail-logo-wrap">
-      <img src="images/bkash-logo.svg" alt="bKash" class="rail-logo"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <div class="rail-logo-fallback" style="display:none">bKash</div>
+    <div class="rail-top">
+      <img src="images/bkash-logo.svg" alt="bKash" class="rail-logo">
+      <div class="rail-target">TARGET FIRM</div>
     </div>
-    <div class="rail-target-label">Target Firm</div>
-
-    <div class="rail-name">Baki<br>Billah<br>Siddiki</div>
-    <div class="rail-tagline">I am the product.<br>bKash is the consumer.</div>
-
-    <div class="rail-divider"></div>
-
-    <div class="rail-meta-label">Roll</div>
-    <div class="rail-meta-value">67</div>
-
-    <div class="rail-meta-label">Batch</div>
-    <div class="rail-meta-value">BBA 30th</div>
-
-    <div class="rail-meta-label">Date</div>
-    <div class="rail-meta-value">09 Apr 2026</div>
-
-    <div class="rail-divider"></div>
-
-    <div class="rail-pos-title">Position Applied</div>
-    <div class="rail-pos-value">GenNEXT Management Trainee<br>Brand &amp; Customer Marketing</div>
-
-    <div class="rail-divider"></div>
-
-    <div class="rail-course-block">
-      <img src="images/iba-logo.png" alt="IBA" class="rail-iba"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <div class="rail-iba-fallback" style="display:none">IBA</div>
-      <div>
-        <div class="rail-course-code">30BBA2026 · M402-1</div>
-        <div class="rail-course-name">Strategic Brand Management</div>
-        <div class="rail-course-school">IBA, University of Dhaka</div>
+    <div class="rail-mid">
+      <div class="rail-name">Baki<br>Billah<br>Siddiki</div>
+      <div class="rail-tagline">I am the product.<br>bKash is the consumer.</div>
+    </div>
+    <div class="rail-bottom">
+      <div class="rail-info">
+        <span class="ri-label">Roll</span>
+        <span class="ri-value">67</span>
+      </div>
+      <div class="rail-info">
+        <span class="ri-label">Batch</span>
+        <span class="ri-value">BBA 30th</span>
+      </div>
+      <div class="rail-info">
+        <span class="ri-label">Date</span>
+        <span class="ri-value">09 Apr 2026</span>
+      </div>
+      <div class="rail-divider"></div>
+      <div class="rail-pos">
+        <span class="ri-label">Position</span>
+        <span class="ri-value-sm">GenNEXT Management Trainee<br>Brand &amp; Customer Marketing</span>
+      </div>
+      <div class="rail-divider"></div>
+      <div class="rail-course">
+        <img src="images/iba-logo.png" alt="IBA" class="rail-iba">
+        <div>
+          <div class="rc-code">30BBA2026 / M402-1</div>
+          <div class="rc-name">Strategic Brand Management</div>
+          <div class="rc-school">IBA, University of Dhaka</div>
+        </div>
       </div>
     </div>
-
   </aside>
 
-  <!-- ══════════════════════════════
-       MAIN CANVAS
-  ══════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════
+       MAIN CANVAS — The four P's in editorial flow
+       ═══════════════════════════════════════════════════ -->
   <main class="canvas">
 
-    <!-- MASTHEAD -->
+    <!-- HEADER BAR -->
     <header class="masthead">
-      <div>
-        <div class="mast-eyebrow">Personal</div>
+      <div class="mast-left">
+        <span class="mast-label">PERSONAL</span>
         <h1 class="mast-title">4P's Marketing Mix</h1>
       </div>
       <div class="mast-right">
-        <div class="mast-marks-label">Full Marks</div>
-        <div class="mast-marks-val">10</div>
+        <span class="mast-marks">Full Marks: 10</span>
       </div>
     </header>
 
-    <!-- ─────────────────────────────────────────────
+    <!-- ─────────────────────────────────────────────────
          P1 · PRODUCT
-    ───────────────────────────────────────────── -->
-    <section class="p-section">
+         ───────────────────────────────────────────────── -->
+    <section class="p-section p-product">
       <div class="p-head">
         <span class="p-num">01</span>
-        <h2 class="p-title">Product</h2>
-        <p class="p-sub">What am I selling to bKash?</p>
+        <div class="p-title-block">
+          <h2 class="p-title">Product</h2>
+          <p class="p-sub">What am I selling to bKash?</p>
+        </div>
       </div>
 
       <div class="p-cols">
-        <!-- LEFT: Core Competencies -->
-        <div>
-          <div class="cat">Core Competencies</div>
-
+        <div class="p-col">
+          <h5 class="cat">Core Competencies</h5>
           <div class="item">
             <span class="item-label">Mixed-Methods Research</span>
-            <span class="item-text">Administered <b>210+ surveys</b> and <b>45+ key informant interviews</b> across national tourism destinations under Bangladesh Investment Development Authority (BIDA). Project operated directly under the Executive Chairman; findings delivered to Bangladesh Parjatan Corporation to enable national tourism investment policy reform.</span>
+            <span class="item-text"><b>210+</b> surveys &amp; <b>45+</b> KIIs across national tourism destinations for <b>BIDA</b>; findings delivered to <b>Bangladesh Parjatan Corporation</b> for national tourism investment policy reform.</span>
           </div>
-
           <div class="item">
             <span class="item-label">Qualitative Fieldwork</span>
-            <span class="item-text">Coordinated <b>200+ Gen-Z participants</b> across <b>20+ focus group discussions</b> in 5 divisional districts for Prothom Alo's Digital Business Team — examining youth news consumption behaviour, supplemented by co-creation workshops.</span>
+            <span class="item-text">Coordinated <b>200+</b> Gen-Z participants across <b>20+</b> FGDs in 5 divisional districts for <b>Prothom Alo</b>'s Digital Business Team on news consumption behaviour.</span>
           </div>
-
           <div class="item">
             <span class="item-label">Campaign Execution</span>
-            <span class="item-text">Led 5-person team at Thrive EdTech across <b>15+ integrated campaigns</b> on 4 platforms — app traffic <span class="up">↑24%</span>, social reach <span class="up">↑10×</span>; managed 50,000-member community with <span class="up">20% retention improvement</span>.</span>
+            <span class="item-text">Led 5-person team, <b>15+</b> integrated campaigns on 4 platforms at <b>Thrive EdTech</b> — app traffic <b class="accent-g">↑24%</b>, social reach <b class="accent-g">↑10×</b>, <b>50K</b>-member community, <b class="accent-g">20% retention lift</b>.</span>
           </div>
-
           <div class="item">
             <span class="item-label">Data &amp; Analytics</span>
-            <span class="item-text">SQL · Python · IBM SPSS · Power BI · Tableau — applied to live consulting and policy datasets at BIDA, IBA, and BCRC.</span>
+            <span class="item-text">SQL · Python · IBM SPSS · Power BI · Tableau — applied to live consulting datasets.</span>
           </div>
-
           <div class="item">
-            <span class="item-label">Stakeholder Engagement</span>
-            <span class="item-text">Managed C-suite executives, diplomats, military officers, and public health experts across editorial verticals at The Prestige Global; facilitated <b>20+ stakeholders</b> at Bangladesh Vision Summit 2024 (500+ attendees).</span>
-          </div>
-
-          <div class="item">
-            <span class="item-label">Education</span>
-            <span class="item-text"><b>BBA, Institute of Business Administration (IBA)</b> — University of Dhaka, Class of 2026. Bangladesh's premier business school.</span>
+            <span class="item-label">Stakeholder Mgmt.</span>
+            <span class="item-text">C-suite, diplomats, military leaders for <b>The Prestige Global</b>'s editorial verticals; 20+ facilitated at Bangladesh Vision Summit 2024.</span>
           </div>
         </div>
-
-        <!-- RIGHT: Differentiators -->
-        <div>
-          <div class="cat">Differentiators</div>
-
+        <div class="p-col">
+          <h5 class="cat">Differentiators</h5>
           <div class="item">
-            <div class="tag tag-pink">Insider</div>
-            <span class="item-text" style="display:block;margin-top:5px"><b>b-ACE Campus Ambassador</b> at bKash (Apr '25 – Mar '26). Operated within the bnext, GenNEXT, and bTechWhiz programs from the employer side. Zero institutional ramp-up required.</span>
+            <span class="item-tag tag-pink">INSIDER</span>
+            <span class="item-text"><b>b-ACE Campus Ambassador</b> (Apr '25 – Mar '26). Fluent in bnext, GenNEXT, bTechWhiz from the operator side. Zero ramp-up.</span>
+          </div>
+          <div class="item">
+            <span class="item-tag tag-gold">CHAMPION</span>
+            <span class="item-text"><b>Hult Prize 2024 National Champion</b> — led winning team; $1M Global Summit at Chulalongkorn University, Bangkok.</span>
+          </div>
+          <div class="item">
+            <span class="item-tag tag-navy">GLOBAL</span>
+            <span class="item-text"><b>Sole sponsored Bangladeshi delegate</b>, Regional Scrum Gathering Tokyo 2026 (800 attendees, 90+ speakers) for Attractor Inc., Japan.</span>
+          </div>
+          <div class="item">
+            <span class="item-tag tag-teal">PUBLISHED</span>
+            <span class="item-text"><b>3 peer-reviewed BCRC cases</b> — ekShop, Shyamoli Enterprises, KOW Company — plus an AI white paper for a Singapore client.</span>
           </div>
 
+          <h5 class="cat cat-sm">Education</h5>
           <div class="item">
-            <div class="tag tag-gold">Champion</div>
-            <span class="item-text" style="display:block;margin-top:5px"><b>Hult Prize 2024 — National Champion.</b> Led the winning team; qualified for the $1M Global Startup Summit at Chulalongkorn University, Bangkok, representing Bangladesh.</span>
-          </div>
-
-          <div class="item">
-            <div class="tag tag-ink">International</div>
-            <span class="item-text" style="display:block;margin-top:5px"><b>Sole sponsored Bangladeshi delegate</b> to Regional Scrum Gathering Tokyo 2026 (800 attendees, 90+ speakers); provided editorial support to CEO Kiro Harada, Attractor Inc., Japan.</span>
-          </div>
-
-          <div class="item">
-            <div class="tag tag-teal">Research</div>
-            <span class="item-text" style="display:block;margin-top:5px">Contributed to <b>BCRC case writing projects</b> spanning e-commerce (ekShop), tourism (Shyamoli Enterprises), and BPO (KOW Company); supported feasibility studies in industrial equipment and a <b>white paper for a Singapore-based AI firm</b> on conversational AI deployment in Bangladesh.</span>
-          </div>
-
-          <div class="item">
-            <div class="tag tag-ink">Research Associate · IBA</div>
-            <span class="item-text" style="display:block;margin-top:5px">Researched post-COVID blended learning adoption at IBA; surveyed <b>400+ students</b>, synthesised academic and industry inputs, and delivered hybrid pedagogy policy recommendations.</span>
+            <span class="item-text"><b>BBA, IBA — University of Dhaka</b> (Class of 2026). Bangladesh's #1 business school.</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────────
+    <!-- ─────────────────────────────────────────────────
          P2 · PRICE
-    ───────────────────────────────────────────── -->
-    <section class="p-section">
+         ───────────────────────────────────────────────── -->
+    <section class="p-section p-price">
       <div class="p-head">
         <span class="p-num">02</span>
-        <h2 class="p-title">Price</h2>
-        <p class="p-sub">What does hiring me cost — and return?</p>
+        <div class="p-title-block">
+          <h2 class="p-title">Price</h2>
+          <p class="p-sub">What does hiring me cost — and return?</p>
+        </div>
       </div>
 
       <div class="p-cols">
-        <div>
-          <div class="cat">Compensation Expectation</div>
+        <div class="p-col">
+          <h5 class="cat">Compensation Expectation</h5>
           <div class="item">
-            <span class="item-text">Aligned to the <b>standard GenNEXT MT band</b>. The negotiation is not on base — it is on the <b>total return structure</b>: performance bonus, leadership acceleration track, L&amp;D investment, and regional rotation opportunities. These compound across tenure in ways that a fixed base figure does not.</span>
+            <span class="item-text">Aligned to the <b>standard GenNEXT MT band</b>, market-benchmarked for Dhaka. Not negotiating on base — negotiating on the <b>total package</b>: performance bonus + leadership fast-track + L&amp;D investment + regional rotation. These compound; base does not.</span>
           </div>
 
-          <div class="cat mt">Long-Term ROI for bKash</div>
+          <h5 class="cat">Long-Term ROI</h5>
           <div class="item">
-            <span class="item-text">Campus ambassador to national policy consultant to international delegate — delivered in <b>under 18 months</b>. The trajectory is documented, verifiable, and accelerating. The firm receives not just effort but <b>durable knowledge assets</b>: brand frameworks, consumer insight decks, and campaign playbooks with shelf lives beyond any single rotation.</span>
+            <span class="item-text">Track record compounds: campus ambassador → national policy consultant → international delegate in <b>under 18 months</b>. I will produce firm knowledge assets — brand frameworks, consumer insight decks, campaign playbooks — that outlast any single rotation.</span>
           </div>
         </div>
-
-        <div>
-          <div class="cat">Value Delivered per Taka</div>
-
+        <div class="p-col">
+          <h5 class="cat">Value Delivered per Taka</h5>
           <div class="val-row">
-            <span class="val-tag">Zero Ramp-Up</span>
-            <span class="val-text"><b>12 months inside bKash</b> as b-ACE Campus Ambassador. I know the people, the programs, and the institutional language.</span>
+            <span class="val-tag">ZERO RAMP-UP</span>
+            <span class="val-text">12 months inside bKash as b-ACE. I know the people, programs, and culture.</span>
           </div>
           <div class="val-row">
-            <span class="val-tag">Vouched</span>
-            <span class="val-text"><b>Abu Usuf Md. Rashedul Amin</b>, GM — Human Resources, bKash Ltd., stands as a named referee and can verify directly.</span>
+            <span class="val-tag">VOUCHED</span>
+            <span class="val-text"><b>Abu Usuf Md. Rashedul Amin</b>, GM — HR, bKash Ltd, can verify directly. Listed referee.</span>
           </div>
           <div class="val-row">
-            <span class="val-tag">Network</span>
-            <span class="val-text">Day-1 channel access: BIDA, Bangladesh Parjatan Corporation, BCRC, Attractor Inc. (Japan), The Prestige Global, Agile Bangladesh, and TechMasters.</span>
+            <span class="val-tag">NETWORK</span>
+            <span class="val-text">Day-1 channel access: BIDA, BPC, BCRC, Attractor Inc., The Prestige Global.</span>
           </div>
           <div class="val-row">
-            <span class="val-tag">Field-Ready</span>
-            <span class="val-text"><b>210+ surveys, 45+ KIIs, 200+ FGD participants</b> coordinated under live deadlines. No training cycle required for research or fieldwork functions.</span>
-          </div>
-          <div class="val-row">
-            <span class="val-tag">Social Impact</span>
-            <span class="val-text">Raised <span class="pk">BDT 20 Lac+</span> via 6 campaigns for 15,000+ children across 64 districts (Jhilimili) — signals execution under constraint and genuine accountability.</span>
+            <span class="val-tag">FIELD-READY</span>
+            <span class="val-text"><b>210+</b> surveys, <b>45+</b> KIIs, <b>200+</b> FGD participants executed under deadline. No training cycle.</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────────
-         P3 · PROMOTION  +  P4 · PLACE
-    ───────────────────────────────────────────── -->
+    <!-- ─────────────────────────────────────────────────
+         P3 · PROMOTION  |  P4 · PLACE  (side by side)
+         ───────────────────────────────────────────────── -->
     <div class="dual-section">
 
-      <section class="p-section half">
+      <section class="p-section p-promo half">
         <div class="p-head">
           <span class="p-num">03</span>
-          <h2 class="p-title">Promotion</h2>
-          <p class="p-sub">How does bKash know me?</p>
+          <div class="p-title-block">
+            <h2 class="p-title">Promotion</h2>
+            <p class="p-sub">How am I making bKash aware?</p>
+          </div>
         </div>
 
-        <div class="cat">Direct Channels</div>
+        <div class="p-body-single">
+          <h5 class="cat">Channels to bKash</h5>
+          <div class="item-compact">
+            <b>LinkedIn</b> — <a href="https://linkedin.com/in/billahsiddiki" class="link">linkedin.com/in/billahsiddiki</a><br>Active portfolio: published cases, conference features, stakeholder spotlights.
+          </div>
+          <div class="item-compact">
+            <b>Internal Champion</b> — Abu Usuf Md. Rashedul Amin, GM HR, bKash. Warm referral, on record.
+          </div>
+          <div class="item-compact">
+            <b>Faculty Endorsement</b> — Prof. Dr. M. Ridhwanul Haq, Chairman BCRC. Academic &amp; professional referee.
+          </div>
 
-        <div class="item-c">
-          <b>Internal Champion —</b> Abu Usuf Md. Rashedul Amin, GM Human Resources, bKash Limited. Warm referral on record; listed referee.
-        </div>
-        <div class="item-c">
-          <b>Faculty Endorsement —</b> Prof. Dr. Mohammad Ridhwanul Haq, Chairman, Business Case Research Council (BCRC) &amp; IBA. Academic and professional referee.
-        </div>
-        <div class="item-c">
-          <b>LinkedIn —</b> <a href="https://linkedin.com/in/billahsiddiki" class="lnk">linkedin.com/in/billahsiddiki</a> — active portfolio of conference features, research contributions, and stakeholder profiles.
-        </div>
+          <h5 class="cat">Portfolio Evidence</h5>
+          <div class="item-compact">
+            <b>3</b> BCRC cases at bcrcbd.org — ekShop · Shyamoli · KOW. Co-authorship on record.
+          </div>
+          <div class="item-compact">
+            BIDA/BPC tourism policy deliverables; Singapore AI white paper on request.
+          </div>
+          <div class="item-compact">
+            <b>Jhilimili campaign lead:</b> 6 nationwide campaigns; raised <b class="accent-b">BDT 20 Lac+</b> for <b>15,000+</b> children across <b>64</b> districts.
+          </div>
 
-        <div class="cat mt">Portfolio Evidence</div>
-
-        <div class="item-c">
-          BCRC case writing contributions at bcrcbd.org — ekShop · Shyamoli Enterprises · KOW Company. Co-authorship verifiable on record.
-        </div>
-        <div class="item-c">
-          BIDA / Bangladesh Parjatan Corporation tourism policy deliverables and Singapore AI white paper available on request.
-        </div>
-        <div class="item-c">
-          <b>Hult Prize 2024 — National Champion.</b> Documented competition record; represented Bangladesh at $1M Global Summit, Bangkok.
-        </div>
-
-        <div class="cat mt">Interview Positioning</div>
-
-        <div class="item-c">
-          Every role on this document was entered without prior sector-specific training — outcomes preceded frameworks. Live STP, 4P, and MECE analysis drawn from real fieldwork, not case simulations.
+          <h5 class="cat">Interview Signal</h5>
+          <div class="item-compact">
+            Every CV role entered without prior training — outcomes first, frameworks after. Live STP/4P/MECE analysis capability from real fieldwork.
+          </div>
         </div>
       </section>
 
-      <section class="p-section half">
+      <section class="p-section p-place half">
         <div class="p-head">
           <span class="p-num">04</span>
-          <h2 class="p-title">Place</h2>
-          <p class="p-sub">Where and when will I deliver?</p>
-        </div>
-
-        <div class="cat">Primary Target</div>
-
-        <div class="item-c">
-          <b>bKash Limited — Dhaka HQ.</b> Brand &amp; Customer Marketing, Consumer Insights, or Customer Value Management. The GenNEXT MT track is the position this body of experience was built for.
-        </div>
-
-        <div class="cat mt">Best-Fit Functions</div>
-
-        <div class="item-c">
-          <b>Brand &amp; Campaign Strategy</b> — directly maps to Thrive EdTech (Marketing Manager, 3 years) and BCRC research contributions.
-        </div>
-        <div class="item-c">
-          <b>Consumer Insight &amp; Research</b> — directly maps to BIDA / BPC national policy fieldwork and Prothom Alo qualitative research.
-        </div>
-        <div class="item-c">
-          Open to MT rotation across Product Marketing, MFS Partnerships, Corporate Strategy, and Policy &amp; Regulatory Affairs.
-        </div>
-
-        <div class="cat mt">Geographic Flexibility</div>
-
-        <div class="item-c">
-          Bangladesh-first. Open to regional secondment across South Asia and Southeast Asia. International exposure on record: <b>Tokyo · Bangkok · Singapore.</b>
-        </div>
-
-        <div class="cat mt">Availability</div>
-
-        <div class="avail-badge">
-          <span class="avail-icon">✓</span>
-          <div>
-            <span class="avail-main">Available — June 2026</span>
-            <span class="avail-sub">Open to pre-hire GenNEXT intake or internship from May 2026 onward.</span>
+          <div class="p-title-block">
+            <h2 class="p-title">Place</h2>
+            <p class="p-sub">Where will I deliver?</p>
           </div>
         </div>
 
-        <div class="item-c">
-          Preference for <b>in-person, client-facing</b> and fieldwork-intensive assignments. Fieldwork is a competency actively sought, not a concession.
+        <div class="p-body-single">
+          <h5 class="cat">Primary Target</h5>
+          <div class="item-compact">
+            <b>bKash Limited — Dhaka HQ.</b> Brand &amp; Customer Marketing, Consumer Insights, or Customer Value Management. The role I'm applying into is the role I've been preparing for.
+          </div>
+
+          <h5 class="cat">Best-Fit Functions</h5>
+          <div class="item-compact">
+            <b>Brand &amp; campaign strategy</b> — maps to Thrive EdTech + BCRC experience.
+          </div>
+          <div class="item-compact">
+            <b>Consumer insight &amp; research</b> — maps to BIDA, BPC, Prothom Alo fieldwork.
+          </div>
+          <div class="item-compact">
+            Open to MT rotations: Product Marketing · MFS Partnerships · Corporate Strategy · Policy &amp; Regulatory Affairs.
+          </div>
+
+          <h5 class="cat">Geographic Flexibility</h5>
+          <div class="item-compact">
+            Bangladesh-first; open to regional secondment — South Asia, SE Asia. International exposure on record: <b>Tokyo</b> · <b>Bangkok</b> · <b>Singapore</b>.
+          </div>
+
+          <h5 class="cat">Availability</h5>
+          <div class="avail-badge">
+            <span class="avail-icon">✓</span>
+            <div>
+              <span class="avail-main">Available June 2026</span>
+              <span class="avail-sub">Open to pre-hire GenNEXT intake or internship from May 2026.</span>
+            </div>
+          </div>
+          <div class="item-compact">
+            Strong preference for <b>in-person, client-facing</b> work. Fieldwork is a competency I seek, not avoid.
+          </div>
         </div>
       </section>
 
@@ -834,6 +280,8 @@ a.lnk {
     </footer>
 
   </main>
+
 </div>
+
 </body>
 </html>
