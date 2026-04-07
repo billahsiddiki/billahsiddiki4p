@@ -5,7 +5,7 @@
 <title>Baki Billah Siddiki — Personal 4P's Marketing Mix</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --pk:     #E2136E;
@@ -25,34 +25,35 @@
   --white:  #FFFFFF;
   --green:  #1B6E45;
   --green-bg: #EBF5F0;
-  --green-lt: #2E8B5E;
+  --green-dk: #0F4A2E;
+  --green-mid:#2E8B5E;
   --gold:   #B88A00;
   --gold-bg: #FFF8E0;
-  --gold-lt: #D4A520;
+  --gold-dk: #7A5E00;
+  --gold-mid:#D4A520;
   --navy:   #17375E;
   --navy-bg: #E7EFF8;
-  --navy-lt: #2A5F8F;
+  --navy-dk: #0C1E36;
+  --navy-mid:#2A5F8F;
   --brown:  #7A3010;
   --brown-bg: #F5E6D8;
-  --brown-lt: #A85230;
+  --brown-dk: #4E1E0A;
+  --brown-mid:#A85230;
   --f-d: 'Cormorant Garamond', Georgia, serif;
   --f-b: 'Inter', -apple-system, 'Segoe UI', sans-serif;
   --rail-w: 58mm;
-  --quad-size: 94mm;
-  --gap: 3.5mm;
-  --radius: 5px;
-  --shadow: 0 2px 12px rgba(0,0,0,.06);
-  --shadow-lg: 0 4px 20px rgba(0,0,0,.10);
+  --quad-w: 116mm;
+  --gap: 3mm;
+  --radius: 6px;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
 
-/* ── PAGE ── */
 .page{
-  width:297mm;height:210mm;margin:8px auto;
+  width:297mm;height:210mm;margin:6px auto;
   background:#fff;display:flex;overflow:hidden;
-  box-shadow:0 12px 48px rgba(0,0,0,.30);
+  box-shadow:0 16px 64px rgba(0,0,0,.35);
   position:relative;
 }
 
@@ -60,33 +61,34 @@ html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
 .edit-banner{
   position:fixed;top:0;left:0;right:0;
   background:linear-gradient(90deg,var(--pk),var(--pk-dk));
-  color:#fff;font-family:var(--f-b);font-size:11px;font-weight:600;
-  padding:6px 15px;text-align:center;z-index:9999;
+  color:#fff;font-family:var(--f-b);font-size:10px;font-weight:600;
+  padding:5px 15px;text-align:center;z-index:9999;
   box-shadow:0 2px 8px rgba(0,0,0,.25);
   display:flex;justify-content:center;align-items:center;gap:8px;
-  letter-spacing:.3px;
+  letter-spacing:.4px;
 }
 .edit-banner .pill{
   background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
-  padding:3px 10px;border-radius:12px;font-size:10px;
+  padding:2px 10px;border-radius:12px;font-size:9.5px;
 }
 .edit-banner button{
   background:rgba(255,255,255,.92);color:var(--pk-dk);
-  border:none;padding:5px 14px;border-radius:4px;cursor:pointer;
-  font-family:var(--f-b);font-size:10px;font-weight:700;
+  border:none;padding:4px 14px;border-radius:4px;cursor:pointer;
+  font-family:var(--f-b);font-size:9.5px;font-weight:700;
   letter-spacing:.5px;text-transform:uppercase;
   box-shadow:0 1px 4px rgba(0,0,0,.12);
 }
 .edit-banner button:hover{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.18);}
 
 /* ═══════════════════════════════════════
-   SIDEBAR (RAIL)
+   SIDEBAR
    ═══════════════════════════════════════ */
 .rail{
   width:var(--rail-w);flex-shrink:0;
   background:linear-gradient(170deg,#140610 0%,#250C1A 25%,#5E0930 65%,var(--pk-900) 100%);
   color:#fff;display:flex;flex-direction:column;
   padding:14px 12px;position:relative;overflow:hidden;
+  z-index:2;
 }
 .rail::before{
   content:'';position:absolute;inset:0;pointer-events:none;
@@ -95,22 +97,20 @@ html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
 .rail::after{
   content:'';position:absolute;top:0;right:0;bottom:0;width:4px;
   background:linear-gradient(180deg,var(--pk) 0%,var(--pk-dk) 50%,rgba(226,19,110,.08) 100%);
-  box-shadow:-2px 0 12px rgba(226,19,110,.25);
+  box-shadow:-2px 0 12px rgba(226,19,110,.3);
 }
 .rail-top{text-align:center;margin-bottom:4px;}
 .rail-logo{
   width:80%;max-width:100px;height:auto;
   margin:0 auto 4px;display:block;
-  filter:brightness(0) invert(1);
-  opacity:.85;
+  filter:brightness(0) invert(1);opacity:.85;
 }
 .rail-target{
   font-family:var(--f-b);font-size:4.4pt;font-weight:700;
   letter-spacing:3px;color:var(--pk);text-transform:uppercase;
   text-align:center;opacity:.85;
-  position:relative;
 }
-.rail-mid{text-align:center;padding:14px 0 16px;position:relative;}
+.rail-mid{text-align:center;padding:14px 0 16px;}
 .rail-name{
   font-family:var(--f-d);font-size:20pt;font-weight:700;
   line-height:1.08;color:#fff;letter-spacing:.4px;
@@ -119,15 +119,14 @@ html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
 .rail-tagline{
   font-family:var(--f-b);font-size:5.2pt;font-weight:300;
   line-height:1.5;color:rgba(255,255,255,.38);
-  margin-top:8px;font-style:italic;
-  letter-spacing:.2px;
+  margin-top:8px;font-style:italic;letter-spacing:.2px;
 }
 .rail-accent{
   width:28px;height:2px;margin:10px auto;
   background:linear-gradient(90deg,transparent,var(--pk),transparent);
   border-radius:2px;
 }
-.rail-bottom{margin-top:auto;position:relative;}
+.rail-bottom{margin-top:auto;}
 .r-row{
   display:flex;justify-content:space-between;
   align-items:baseline;margin-bottom:2.5px;
@@ -144,129 +143,202 @@ html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
 .r-div{height:1px;background:rgba(255,255,255,.08);margin:5px 0;}
 .r-course{display:flex;align-items:center;gap:5px;margin-top:4px;}
 .r-iba{height:17px;width:auto;filter:brightness(0) invert(1);opacity:.45;flex-shrink:0;}
-.rc-code{font-family:var(--f-b);font-size:4pt;color:rgba(255,255,255,.22);letter-spacing:.2px;}
+.rc-code{font-family:var(--f-b);font-size:4pt;color:rgba(255,255,255,.22);}
 .rc-name{font-family:var(--f-b);font-size:4.8pt;font-weight:600;color:rgba(255,255,255,.58);}
 .rc-school{font-family:var(--f-b);font-size:4pt;color:rgba(255,255,255,.25);}
 
 /* ═══════════════════════════════════════
-   MAIN CANVAS
+   CANVAS
    ═══════════════════════════════════════ */
 .canvas{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;}
 
 /* ── MASTHEAD ── */
 .masthead{
   display:flex;justify-content:space-between;align-items:flex-end;
-  padding:7px 14px 6px;flex-shrink:0;
+  padding:6px 14px 5px;flex-shrink:0;
   border-bottom:1.5px solid var(--i15);
   background:linear-gradient(180deg,var(--i03),var(--white));
 }
 .m-left{display:flex;align-items:baseline;gap:10px;}
 .m-label{
-  font-family:var(--f-b);font-size:4.6pt;font-weight:700;
+  font-family:var(--f-b);font-size:4.2pt;font-weight:700;
   letter-spacing:4px;text-transform:uppercase;color:var(--pk);
   background:var(--pk-100);padding:2px 8px;border-radius:3px;
 }
 .m-title{
-  font-family:var(--f-d);font-size:19pt;font-weight:700;
+  font-family:var(--f-d);font-size:18pt;font-weight:700;
   color:var(--black);line-height:1;
 }
 .m-right{text-align:right;}
 .m-marks{
-  font-family:var(--f-b);font-size:4.8pt;font-weight:500;
+  font-family:var(--f-b);font-size:4.5pt;font-weight:500;
   color:var(--i30);letter-spacing:.3px;
 }
-.m-sub{
-  font-family:var(--f-b);font-size:4pt;color:var(--i30);
-  margin-top:1px;
-}
+.m-sub{font-family:var(--f-b);font-size:3.8pt;color:var(--i30);margin-top:1px;}
 
-/* ── 2×2 GRID ── */
-.grid-wrap{
-  flex:1;display:flex;align-items:center;justify-content:center;
-  padding:8px 12px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:var(--quad-size) var(--quad-size);
-  grid-template-rows:var(--quad-size) var(--quad-size);
+/* ── QUADRANT WRAPPER ── */
+.quad-wrap{
+  flex:1;display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
   gap:var(--gap);
+  padding:4px 6px 3px;
+  min-height:0;
 }
 
-/* ── CELL BASE ── */
-.cell{
-  border-radius:var(--radius);overflow:hidden;
+/* ── QUADRANT BASE ── */
+.quad{
+  border-radius:var(--radius);
   display:flex;flex-direction:column;
-  box-shadow:var(--shadow);
-  transition:transform .15s ease,box-shadow .15s ease;
-  position:relative;
+  overflow:hidden;position:relative;
+  transition:transform .2s ease,box-shadow .2s ease;
 }
-.cell:hover{
-  transform:translateY(-1px);
-  box-shadow:var(--shadow-lg);
+.quad:hover{
+  transform:translateY(-2px) scale(1.003);
 }
 
-/* accent stripe on left of each cell */
-.cell::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;z-index:1;
+/* Decorative corner accent */
+.quad::after{
+  content:'';position:absolute;
+  width:60px;height:60px;
+  opacity:.06;border-radius:50%;
+  pointer-events:none;
 }
-.c1::before{background:linear-gradient(180deg,var(--green),var(--green-lt));}
-.c2::before{background:linear-gradient(180deg,var(--gold),var(--gold-lt));}
-.c3::before{background:linear-gradient(180deg,var(--navy),var(--navy-lt));}
-.c4::before{background:linear-gradient(180deg,var(--brown),var(--brown-lt));}
 
-.c1{background:linear-gradient(145deg,#ffffff 0%,var(--green-bg) 100%);border:1px solid rgba(27,110,69,.12);}
-.c2{background:linear-gradient(145deg,#ffffff 0%,var(--gold-bg) 100%);border:1px solid rgba(184,138,0,.12);}
-.c3{background:linear-gradient(145deg,#ffffff 0%,var(--navy-bg) 100%);border:1px solid rgba(23,55,94,.10);}
-.c4{background:linear-gradient(145deg,#ffffff 0%,var(--brown-bg) 100%);border:1px solid rgba(122,48,16,.10);}
+/* ── PRODUCT (Green) ── */
+.quad-product{
+  background:linear-gradient(155deg,#F0F9F4 0%,#E8F5EC 40%,#DCF0E4 100%);
+  border:1px solid rgba(27,110,69,.15);
+  box-shadow:0 2px 16px rgba(27,110,69,.08);
+}
+.quad-product::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3.5px;
+  background:linear-gradient(90deg,var(--green-dk),var(--green),var(--green-mid));
+  z-index:1;
+}
+.quad-product::after{
+  top:-20px;right:-20px;
+  background:var(--green);
+  width:80px;height:80px;opacity:.04;
+}
 
-.cell-inner{
-  padding:6px 9px 5px;display:flex;flex-direction:column;
+/* ── PRICE (Gold) ── */
+.quad-price{
+  background:linear-gradient(155deg,#FFFCF0 0%,#FFF9E6 40%,#FFF4D6 100%);
+  border:1px solid rgba(184,138,0,.15);
+  box-shadow:0 2px 16px rgba(184,138,0,.08);
+}
+.quad-price::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3.5px;
+  background:linear-gradient(90deg,var(--gold-dk),var(--gold),var(--gold-mid));
+  z-index:1;
+}
+.quad-price::after{
+  top:-20px;right:-20px;
+  background:var(--gold);
+  width:80px;height:80px;opacity:.04;
+}
+
+/* ── PROMOTION (Navy) ── */
+.quad-promo{
+  background:linear-gradient(155deg,#F2F6FB 0%,#EBF1F8 40%,#E2EAF5 100%);
+  border:1px solid rgba(23,55,94,.12);
+  box-shadow:0 2px 16px rgba(23,55,94,.07);
+}
+.quad-promo::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3.5px;
+  background:linear-gradient(90deg,var(--navy-dk),var(--navy),var(--navy-mid));
+  z-index:1;
+}
+.quad-promo::after{
+  top:-20px;right:-20px;
+  background:var(--navy);
+  width:80px;height:80px;opacity:.04;
+}
+
+/* ── PLACE (Brown) ── */
+.quad-place{
+  background:linear-gradient(155deg,#FBF5F0 0%,#F7EDE4 40%,#F2E4D6 100%);
+  border:1px solid rgba(122,48,16,.12);
+  box-shadow:0 2px 16px rgba(122,48,16,.07);
+}
+.quad-place::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3.5px;
+  background:linear-gradient(90deg,var(--brown-dk),var(--brown),var(--brown-mid));
+  z-index:1;
+}
+.quad-place::after{
+  top:-20px;right:-20px;
+  background:var(--brown);
+  width:80px;height:80px;opacity:.04;
+}
+
+/* ── QUAD INNER ── */
+.quad-inner{
+  padding:6px 10px 6px;
+  display:flex;flex-direction:column;
   flex:1;overflow:hidden;position:relative;z-index:0;
 }
 
-/* ── CELL HEADER ── */
-.c-head{
-  display:flex;align-items:center;gap:6px;
-  margin-bottom:4px;padding-bottom:4px;
-  border-bottom:1px solid rgba(0,0,0,.08);flex-shrink:0;
+/* ── QUAD HEADER ── */
+.q-head{
+  display:flex;align-items:center;gap:7px;
+  margin-bottom:5px;padding-bottom:4px;
+  border-bottom:1px solid rgba(0,0,0,.07);flex-shrink:0;
 }
-.p-num{
-  font-family:var(--f-d);font-size:22pt;font-weight:700;
-  line-height:.85;letter-spacing:-1px;
-  min-width:22px;text-align:center;
-}
-.c1 .p-num{color:var(--green);}
-.c2 .p-num{color:var(--gold);}
-.c3 .p-num{color:var(--navy);}
-.c4 .p-num{color:var(--brown);}
 
-.p-title{
-  font-family:var(--f-d);font-size:12pt;font-weight:700;
+/* Number badge */
+.q-num{
+  font-family:var(--f-d);font-size:24pt;font-weight:700;
+  line-height:.85;letter-spacing:-1px;
+  min-width:26px;text-align:center;
+  position:relative;
+}
+.quad-product .q-num{color:var(--green-dk);}
+.quad-price .q-num{color:var(--gold-dk);}
+.quad-promo .q-num{color:var(--navy-dk);}
+.quad-place .q-num{color:var(--brown-dk);}
+
+.q-title{
+  font-family:var(--f-d);font-size:13pt;font-weight:700;
   color:var(--ink);line-height:1;
 }
-.p-sub{
-  font-family:var(--f-b);font-size:4.6pt;font-weight:400;
+.q-sub{
+  font-family:var(--f-b);font-size:4.4pt;font-weight:400;
   color:var(--i50);font-style:italic;margin-top:1px;
+  letter-spacing:.2px;
 }
 
 /* ── SECTION LABELS ── */
-.slabel{
-  font-family:var(--f-b);font-size:4.4pt;font-weight:700;
-  letter-spacing:1.6px;text-transform:uppercase;color:var(--i50);
+.slbl{
+  font-family:var(--f-b);font-size:4.2pt;font-weight:700;
+  letter-spacing:1.8px;text-transform:uppercase;
   margin-bottom:2px;margin-top:4px;
-  padding-bottom:1.5px;border-bottom:.5px solid var(--i15);
-  flex-shrink:0;
+  padding-bottom:1.5px;flex-shrink:0;
+  display:flex;align-items:center;gap:4px;
 }
-.slabel:first-of-type{margin-top:0;}
+.slbl::after{
+  content:'';flex:1;height:.5px;opacity:.3;
+}
+.quad-product .slbl{color:var(--green-dk);}
+.quad-product .slbl::after{background:var(--green);}
+.quad-price .slbl{color:var(--gold-dk);}
+.quad-price .slbl::after{background:var(--gold);}
+.quad-promo .slbl{color:var(--navy-dk);}
+.quad-promo .slbl::after{background:var(--navy);}
+.quad-place .slbl{color:var(--brown-dk);}
+.quad-place .slbl::after{background:var(--brown);}
+
+.slbl:first-of-type{margin-top:0;}
 
 /* ── ENTRIES ── */
-.e{
-  font-family:var(--f-b);font-size:5.4pt;
-  line-height:1.4;color:var(--i70);margin-bottom:2px;
+.ent{
+  font-family:var(--f-b);font-size:5.2pt;
+  line-height:1.38;color:var(--i70);margin-bottom:2px;
 }
-.e b,.e strong{font-weight:600;color:var(--ink);}
-.e-row{display:flex;align-items:flex-start;gap:4px;margin-bottom:2px;}
-.dot{
+.ent b,.ent strong{font-weight:600;color:var(--ink);}
+.ent-row{display:flex;align-items:flex-start;gap:4px;margin-bottom:2px;}
+.ent-dot{
   width:3px;height:3px;border-radius:50%;
   flex-shrink:0;margin-top:3.5px;
 }
@@ -278,78 +350,88 @@ html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
 /* ── BADGES ── */
 .badge{
   display:inline-block;font-family:var(--f-b);
-  font-size:3.8pt;font-weight:700;letter-spacing:.8px;
+  font-size:3.6pt;font-weight:700;letter-spacing:.8px;
   text-transform:uppercase;padding:1px 3.5px;
   border-radius:2px;margin-right:2.5px;vertical-align:1px;
-  line-height:1.15;white-space:nowrap;
+  line-height:1.2;white-space:nowrap;
 }
-.b-pk{background:var(--pk-100);color:var(--pk-dk);border:.5px solid rgba(226,19,110,.15);}
-.b-gd{background:var(--gold-bg);color:#8A6900;border:.5px solid rgba(184,138,0,.18);}
-.b-nv{background:var(--navy-bg);color:var(--navy);border:.5px solid rgba(23,55,94,.13);}
-.b-gn{background:var(--green-bg);color:var(--green);border:.5px solid rgba(27,110,69,.15);}
+.b-pk{background:var(--pk-100);color:var(--pk-dk);border:.5px solid rgba(226,19,110,.12);}
+.b-gd{background:var(--gold-bg);color:#8A6900;border:.5px solid rgba(184,138,0,.15);}
+.b-nv{background:var(--navy-bg);color:var(--navy);border:.5px solid rgba(23,55,94,.12);}
+.b-gn{background:var(--green-bg);color:var(--green);border:.5px solid rgba(27,110,69,.12);}
 
 /* ── STAT CHIPS ── */
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:3px;flex-shrink:0;}
 .stat{
-  background:rgba(255,255,255,.7);border:.5px solid var(--i15);
-  border-radius:3px;padding:3px 5px;
+  background:rgba(255,255,255,.75);
+  border-radius:4px;padding:3.5px 6px;
   backdrop-filter:blur(2px);
+  border:1px solid rgba(0,0,0,.06);
+  position:relative;overflow:hidden;
 }
+.stat::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:2px;
+}
+.quad-price .stat::before{background:linear-gradient(180deg,var(--gold),var(--gold-mid));}
 .stat-n{
-  font-family:var(--f-d);font-size:13pt;font-weight:700;
+  font-family:var(--f-d);font-size:14pt;font-weight:700;
   color:var(--ink);line-height:1;
 }
 .stat-n span{font-family:var(--f-b);font-size:7pt;font-weight:500;color:var(--i50);}
 .stat-d{
-  font-family:var(--f-b);font-size:4.4pt;
-  color:var(--i50);line-height:1.3;margin-top:.5px;
+  font-family:var(--f-b);font-size:4.2pt;
+  color:var(--i50);line-height:1.28;margin-top:.5px;
 }
 
 /* ── VALUE ROWS ── */
 .v-row{display:flex;align-items:flex-start;gap:4px;margin-bottom:2px;}
 .v-tag{
-  font-family:var(--f-b);font-size:3.8pt;font-weight:700;
+  font-family:var(--f-b);font-size:3.6pt;font-weight:700;
   letter-spacing:.6px;text-transform:uppercase;
-  color:var(--gold);background:var(--gold-bg);
-  border:.5px solid rgba(184,138,0,.16);
-  padding:1.5px 3px;border-radius:2px;
-  white-space:nowrap;flex-shrink:0;margin-top:.5px;line-height:1.1;
+  padding:1.5px 3.5px;border-radius:2px;
+  white-space:nowrap;flex-shrink:0;margin-top:.5px;line-height:1.15;
 }
-.v-txt{font-family:var(--f-b);font-size:5.2pt;line-height:1.38;color:var(--i70);}
+.quad-price .v-tag{
+  color:var(--gold-dk);background:rgba(255,248,224,.8);
+  border:.5px solid rgba(184,138,0,.15);
+}
+.v-txt{font-family:var(--f-b);font-size:5pt;line-height:1.36;color:var(--i70);}
 .v-txt b{font-weight:600;color:var(--ink);}
 
 /* ── CHANNEL ROWS ── */
 .ch-row{display:flex;align-items:flex-start;gap:4px;margin-bottom:2px;}
 .ch-tag{
-  font-family:var(--f-b);font-size:3.8pt;font-weight:700;
+  font-family:var(--f-b);font-size:3.6pt;font-weight:700;
   letter-spacing:.4px;text-transform:uppercase;
-  color:var(--navy);background:var(--navy-bg);
-  border:.5px solid rgba(23,55,94,.12);
   padding:1.5px 3.5px;border-radius:2px;
-  white-space:nowrap;flex-shrink:0;margin-top:.5px;line-height:1.1;
+  white-space:nowrap;flex-shrink:0;margin-top:.5px;line-height:1.15;
 }
-.ch-txt{font-family:var(--f-b);font-size:5.2pt;line-height:1.38;color:var(--i70);}
+.quad-promo .ch-tag{
+  color:var(--navy-dk);background:rgba(231,239,248,.8);
+  border:.5px solid rgba(23,55,94,.12);
+}
+.ch-txt{font-family:var(--f-b);font-size:5pt;line-height:1.36;color:var(--i70);}
 .ch-txt b{font-weight:600;color:var(--ink);}
 
 /* ── AVAILABILITY ── */
 .avail{
   display:flex;align-items:center;gap:6px;
-  background:linear-gradient(135deg,var(--green-bg),#D4EDDA);
-  border:1px solid rgba(27,110,69,.18);
-  border-radius:3px;padding:4px 6px;margin-bottom:3px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(235,245,240,.9),rgba(212,237,218,.9));
+  border:1px solid rgba(27,110,69,.15);
+  border-radius:4px;padding:4px 7px;margin-bottom:3px;flex-shrink:0;
+  backdrop-filter:blur(2px);
 }
 .avail-tick{font-size:8pt;color:var(--green);font-weight:700;flex-shrink:0;line-height:1;}
-.avail-main{font-family:var(--f-b);font-size:5.8pt;font-weight:700;color:var(--green);display:block;}
-.avail-sub{font-family:var(--f-b);font-size:4.6pt;color:var(--i50);display:block;margin-top:.5px;}
+.avail-main{font-family:var(--f-b);font-size:5.6pt;font-weight:700;color:var(--green-dk);display:block;}
+.avail-sub{font-family:var(--f-b);font-size:4.4pt;color:var(--i50);display:block;margin-top:.5px;}
 
 /* ── INLINE ACCENTS ── */
 .ag{color:var(--green)!important;font-weight:600!important;}
-.ak{color:var(--pk)!important;font-weight:600!important;}
 
 /* ── FOOTER ── */
 .foot{
   padding:3px 14px 4px;border-top:1.5px solid var(--i15);
-  font-family:var(--f-b);font-size:4.6pt;color:var(--i30);
+  font-family:var(--f-b);font-size:4.4pt;color:var(--i30);
   text-align:center;letter-spacing:.2px;flex-shrink:0;
   background:var(--i03);
 }
@@ -366,7 +448,7 @@ html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
   .page{margin:0!important;box-shadow:none!important;width:297mm!important;height:210mm!important;}
   .edit-banner{display:none!important;}
   [contenteditable="true"]:hover,[contenteditable="true"]:focus{outline:none!important;background:transparent!important;}
-  .cell{break-inside:avoid;}
+  .quad{break-inside:avoid;}
 }
 </style>
 </head>
@@ -374,7 +456,7 @@ html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
 
 <div class="edit-banner">
   <span>📝 CLICK ANY TEXT TO EDIT</span>
-  <span class="pill">Landscape · Perfect Squares</span>
+  <span class="pill">Landscape · Full Width · Premium Quadrants</span>
   <button id="downloadBtn">⬇ SAVE HTML</button>
 </div>
 
@@ -403,7 +485,7 @@ html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
       </div>
       <div class="r-div"></div>
       <div class="r-course">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbMAAACPCAMAAABH/MXXAAAA9lBMVEVHcEz///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9vjWGIAAAAUXRSTlMA8CB3RCKZ3bsREGbu4KrMM1WIkDBA4fnz9B5Fe1I3+IIc0gQ/Z0oBCiUZdAVJYFgyIUMCoOOeh6/ryYSdhbik8taN9sXql9gJawM89+/QDg/yphRRAAAMNUlEQVR4nO2deZvbKBLGlWBZ1spjye5OMpnZnWvv+77v+z74/l9mH0BAFVRJcltSi5j3jzxpGbDMz0CB4HVRZCWo96D+i1/79L1r9BnK+9lVeT9d90MnLgn1OfzaS3mNXqC8L67K+3LkDssbP2UppdwXz6HzSd3/oZuzzHeaWX3axczcxUk5b5QmJqU8FzPqXWbWSBkz8xcn5bxNwn7AWzuKe2EmJMEMXJyU8zYd7Qcs5tR9MPNalVmn7l0UcyszW5DZTkp5KmZXZrYws/mbWWZGKTObezyrRaWmPPgLLPa6INEsMp6Jgyr8NNRmStFGaXI701WwK86OtJ/0NB7/sXFpe5UubsQXd3iiLaWs4pwWISo8Vm2+MuZ7E+Yy5d4xMwGy2RqE1/o6m49ZrduYFb2a0qmW73QIb+rOmQmY7Vi761DdrMx0l+d1IW6xdPMwAG0DzN48BPrRjycz+0mY9+Hh4c3TmEkpD6p56TGt74ZUQ6hM69JrRfs5memqN4OnGbGI0VC3RH0HpSEltsEMI1H64k+nMqOQjCbgmAlzua7c5Me3OFNTx2nrIAwznKhWTcjFFeqFNrpDPcLaeVjZ4g7gOWP9mFlR/OwZmO1h3FFZIH7merzYWpqFmcDVfum7XqQTugHdUYrNMvvwGZh19nptW5QCciQedszCrHXN1hUU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" alt="IBA" class="r-iba">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbMAAACPCAMAAABH/MXXAAAA9lBMVEVHcEz////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////......" alt="IBA" class="r-iba">
         <div>
           <div class="rc-code" contenteditable="true">30BBA2026 / M402-1</div>
           <div class="rc-name" contenteditable="true">Strategic Brand Management</div>
@@ -426,184 +508,182 @@ html{background:#AEAEAE;-webkit-font-smoothing:antialiased;}
       </div>
     </header>
 
-    <div class="grid-wrap">
-      <div class="grid">
+    <div class="quad-wrap">
 
-        <!-- ═══════ 01 · PRODUCT ═══════ -->
-        <div class="cell c1">
-          <div class="cell-inner">
-            <div class="c-head">
-              <span class="p-num">01</span>
-              <div>
-                <div class="p-title" contenteditable="true">Product</div>
-                <div class="p-sub" contenteditable="true">What am I selling to bKash?</div>
-              </div>
-            </div>
-
-            <div class="slabel" contenteditable="true">Core Competencies</div>
-            <div class="e-row">
-              <span class="dot dg"></span>
-              <div class="e" contenteditable="true"><strong>Primary Research &amp; Policy Consulting</strong> — 210+ surveys &amp; 45+ KIIs for BIDA; findings delivered to Bangladesh Parjatan Corporation for national tourism policy reform.</div>
-            </div>
-            <div class="e-row">
-              <span class="dot dk"></span>
-              <div class="e" contenteditable="true"><strong>Qualitative Fieldwork</strong> — 200+ Gen-Z participants, 20+ FGDs across 5 districts for Prothom Alo Digital on news consumption behaviour.</div>
-            </div>
-            <div class="e-row">
-              <span class="dot dd"></span>
-              <div class="e" contenteditable="true"><strong>Integrated Campaigns</strong> — Led 5-person team, 15+ campaigns at Thrive EdTech: app traffic <b class="ag">↑24%</b>, social reach <b class="ag">↑10×</b>, <b class="ag">20% retention lift</b>.</div>
-            </div>
-            <div class="e-row">
-              <span class="dot dn"></span>
-              <div class="e" contenteditable="true"><strong>Data &amp; Analytics</strong> — SQL · Python · SPSS · Power BI · Tableau — applied to live consulting &amp; academic datasets.</div>
-            </div>
-
-            <div class="slabel" contenteditable="true">Differentiators</div>
-            <div class="e" style="margin-bottom:1.5px" contenteditable="true"><span class="badge b-pk">INSIDER</span><strong>b-ACE Campus Ambassador, bKash</strong> (Apr '25–Mar '26) — fluent in bnext &amp; GenNEXT. Zero ramp-up.</div>
-            <div class="e" style="margin-bottom:1.5px" contenteditable="true"><span class="badge b-gd">CHAMPION</span><strong>Hult Prize 2024 National Champion</strong> — $1M Global Summit, Chulalongkorn University, Bangkok.</div>
-            <div class="e" style="margin-bottom:1.5px" contenteditable="true"><span class="badge b-nv">GLOBAL</span>Delegate, <strong>Scrum Gathering Tokyo 2026</strong> (800 attendees). Active in Agile Bangladesh community.</div>
-            <div class="e" contenteditable="true"><span class="badge b-gn">RESEARCH</span>BCRC case studies on BD enterprises + AI white paper for Singapore client.</div>
-          </div>
-        </div>
-
-        <!-- ═══════ 02 · PRICE ═══════ -->
-        <div class="cell c2">
-          <div class="cell-inner">
-            <div class="c-head">
-              <span class="p-num">02</span>
-              <div>
-                <div class="p-title" contenteditable="true">Price</div>
-                <div class="p-sub" contenteditable="true">Cost to hire — return on investment</div>
-              </div>
-            </div>
-
-            <div class="stats">
-              <div class="stat">
-                <div class="stat-n" contenteditable="true">18<span>mo</span></div>
-                <div class="stat-d" contenteditable="true">Ambassador → delegate → policy consultant</div>
-              </div>
-              <div class="stat">
-                <div class="stat-n" contenteditable="true">210<span>+</span></div>
-                <div class="stat-d" contenteditable="true">Surveys &amp; KIIs — field-ready, no training</div>
-              </div>
-              <div class="stat">
-                <div class="stat-n" contenteditable="true">50<span>K</span></div>
-                <div class="stat-d" contenteditable="true">Community managed with measurable outcomes</div>
-              </div>
-              <div class="stat">
-                <div class="stat-n" contenteditable="true">20<span>L+</span></div>
-                <div class="stat-d" contenteditable="true">BDT raised for 15K+ children across 64 districts</div>
-              </div>
-            </div>
-
-            <div class="slabel" contenteditable="true">Compensation</div>
-            <div class="e" style="margin-bottom:3px" contenteditable="true">Aligned to <strong>standard GenNEXT MT band</strong>. Negotiable on total package — bonus, fast-track, L&amp;D, rotation.</div>
-
-            <div class="slabel" contenteditable="true">Value Delivered</div>
-            <div class="v-row">
-              <span class="v-tag">ZERO RAMP</span>
-              <span class="v-txt" contenteditable="true">12 months inside bKash as b-ACE — knows people &amp; culture.</span>
-            </div>
-            <div class="v-row">
-              <span class="v-tag">VOUCHED</span>
-              <span class="v-txt" contenteditable="true"><b>Abu Usuf Md. Rashedul Amin</b>, GM-HR — on-record referee.</span>
-            </div>
-            <div class="v-row">
-              <span class="v-tag">NETWORK</span>
-              <span class="v-txt" contenteditable="true">Day-1 access: BIDA, Parjatan Corp, BCRC, Attractor Japan.</span>
-            </div>
-            <div class="v-row">
-              <span class="v-tag">ROI</span>
-              <span class="v-txt" contenteditable="true">Outcomes first, frameworks after. Every role entered without training.</span>
+      <!-- ═══════ 01 · PRODUCT ═══════ -->
+      <div class="quad quad-product">
+        <div class="quad-inner">
+          <div class="q-head">
+            <span class="q-num">01</span>
+            <div>
+              <div class="q-title" contenteditable="true">Product</div>
+              <div class="q-sub" contenteditable="true">What am I selling to bKash?</div>
             </div>
           </div>
-        </div>
 
-        <!-- ═══════ 03 · PROMOTION ═══════ -->
-        <div class="cell c3">
-          <div class="cell-inner">
-            <div class="c-head">
-              <span class="p-num">03</span>
-              <div>
-                <div class="p-title" contenteditable="true">Promotion</div>
-                <div class="p-sub" contenteditable="true">How bKash becomes aware of my value</div>
-              </div>
-            </div>
-
-            <div class="slabel" contenteditable="true">Channels to bKash</div>
-            <div class="ch-row">
-              <span class="ch-tag">LinkedIn</span>
-              <span class="ch-txt" contenteditable="true"><b>linkedin.com/in/billahsiddiki</b> — research, conference features, stakeholder spotlights.</span>
-            </div>
-            <div class="ch-row">
-              <span class="ch-tag">Referral</span>
-              <span class="ch-txt" contenteditable="true"><b>Abu Usuf Md. Rashedul Amin</b>, GM-HR, bKash — warm referral on record.</span>
-            </div>
-            <div class="ch-row">
-              <span class="ch-tag">Faculty</span>
-              <span class="ch-txt" contenteditable="true"><b>Prof. Dr. M. Ridhwanul Haq</b>, BCRC Chairman — academic &amp; professional referee.</span>
-            </div>
-
-            <div class="slabel" contenteditable="true">Evidence Portfolio</div>
-            <div class="ch-row">
-              <span class="ch-tag">BIDA</span>
-              <span class="ch-txt" contenteditable="true">National tourism demand study (210+ surveys) → delivered to Executive Chairman for policy reform.</span>
-            </div>
-            <div class="ch-row">
-              <span class="ch-tag">BCRC</span>
-              <span class="ch-txt" contenteditable="true">E-commerce, tourism &amp; BPO case research + Singapore AI white paper.</span>
-            </div>
-            <div class="ch-row">
-              <span class="ch-tag">Jhilimili</span>
-              <span class="ch-txt" contenteditable="true">Campaign Lead — <b>BDT 20 Lac+</b> raised for 15,000+ children across 64 districts.</span>
-            </div>
-
-            <div class="slabel" contenteditable="true">Interview Signal</div>
-            <div class="e" contenteditable="true">Every role entered without training — outcomes first, frameworks after. Live STP, 4P &amp; MECE reasoning from real fieldwork.</div>
+          <div class="slbl" contenteditable="true">Core Competencies</div>
+          <div class="ent-row">
+            <span class="ent-dot dg"></span>
+            <div class="ent" contenteditable="true"><strong>Primary Research &amp; Policy Consulting</strong> — 210+ surveys &amp; 45+ KIIs for BIDA; findings delivered to Bangladesh Parjatan Corporation for national tourism policy reform.</div>
           </div>
-        </div>
-
-        <!-- ═══════ 04 · PLACE ═══════ -->
-        <div class="cell c4">
-          <div class="cell-inner">
-            <div class="c-head">
-              <span class="p-num">04</span>
-              <div>
-                <div class="p-title" contenteditable="true">Place</div>
-                <div class="p-sub" contenteditable="true">Where and how I will deliver</div>
-              </div>
-            </div>
-
-            <div class="slabel" contenteditable="true">Primary Target</div>
-            <div class="e" style="margin-bottom:3px" contenteditable="true"><strong>bKash Ltd — Dhaka HQ.</strong> Brand &amp; Customer Marketing, Consumer Insights, or CVM. The role I'm applying for is the one I've prepared for — from the inside.</div>
-
-            <div class="slabel" contenteditable="true">Best-Fit Functions</div>
-            <div class="e-row">
-              <span class="dot dk"></span>
-              <div class="e" contenteditable="true"><strong>Brand &amp; Campaign Strategy</strong> — maps to Thrive campaigns, The Prestige Global, BCRC.</div>
-            </div>
-            <div class="e-row">
-              <span class="dot dk"></span>
-              <div class="e" contenteditable="true"><strong>Consumer Insight &amp; Research</strong> — maps to BIDA study, Prothom Alo fieldwork, IBA research.</div>
-            </div>
-            <div class="e" style="margin-left:8px;font-size:5pt;color:var(--i50);margin-bottom:3px" contenteditable="true">Open to rotations: Product Marketing · MFS Partnerships · Strategy · Policy</div>
-
-            <div class="slabel" contenteditable="true">Flexibility</div>
-            <div class="e" style="margin-bottom:3px" contenteditable="true">Bangladesh-first; open to South/Southeast Asia secondment. International: <strong>Tokyo · Bangkok · Singapore</strong>.</div>
-
-            <div class="slabel" contenteditable="true">Availability</div>
-            <div class="avail">
-              <span class="avail-tick">✓</span>
-              <div>
-                <span class="avail-main" contenteditable="true">August 2026 (Graduation)</span>
-                <span class="avail-sub" contenteditable="true">Pre-hire intake or internship from May 2026.</span>
-              </div>
-            </div>
-            <div class="e" contenteditable="true">Preference: <strong>in-person, client-facing</strong>. Fieldwork is a competency — not a constraint.</div>
+          <div class="ent-row">
+            <span class="ent-dot dk"></span>
+            <div class="ent" contenteditable="true"><strong>Qualitative Fieldwork</strong> — 200+ Gen-Z participants, 20+ FGDs across 5 districts for Prothom Alo Digital on news consumption behaviour.</div>
           </div>
-        </div>
+          <div class="ent-row">
+            <span class="ent-dot dd"></span>
+            <div class="ent" contenteditable="true"><strong>Integrated Campaigns</strong> — Led 5-person team, 15+ campaigns at Thrive EdTech: app traffic <b class="ag">↑24%</b>, social reach <b class="ag">↑10×</b>, <b class="ag">20% retention lift</b>.</div>
+          </div>
+          <div class="ent-row">
+            <span class="ent-dot dn"></span>
+            <div class="ent" contenteditable="true"><strong>Data &amp; Analytics</strong> — SQL · Python · SPSS · Power BI · Tableau — applied to live consulting &amp; academic datasets.</div>
+          </div>
 
+          <div class="slbl" contenteditable="true">Differentiators</div>
+          <div class="ent" style="margin-bottom:1.5px" contenteditable="true"><span class="badge b-pk">INSIDER</span><strong>b-ACE Campus Ambassador, bKash</strong> (Apr '25–Mar '26) — fluent in bnext &amp; GenNEXT. Zero ramp-up.</div>
+          <div class="ent" style="margin-bottom:1.5px" contenteditable="true"><span class="badge b-gd">CHAMPION</span><strong>Hult Prize 2024 National Champion</strong> — $1M Global Summit, Chulalongkorn University, Bangkok.</div>
+          <div class="ent" style="margin-bottom:1.5px" contenteditable="true"><span class="badge b-nv">GLOBAL</span>Delegate, <strong>Scrum Gathering Tokyo 2026</strong> (800 attendees). Active in Agile Bangladesh community.</div>
+          <div class="ent" contenteditable="true"><span class="badge b-gn">RESEARCH</span>BCRC case studies on BD enterprises + AI white paper for Singapore client.</div>
+        </div>
       </div>
+
+      <!-- ═══════ 02 · PRICE ═══════ -->
+      <div class="quad quad-price">
+        <div class="quad-inner">
+          <div class="q-head">
+            <span class="q-num">02</span>
+            <div>
+              <div class="q-title" contenteditable="true">Price</div>
+              <div class="q-sub" contenteditable="true">Cost to hire — return on investment</div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-n" contenteditable="true">18<span>mo</span></div>
+              <div class="stat-d" contenteditable="true">Ambassador → delegate → policy consultant</div>
+            </div>
+            <div class="stat">
+              <div class="stat-n" contenteditable="true">210<span>+</span></div>
+              <div class="stat-d" contenteditable="true">Surveys &amp; KIIs — field-ready, no training</div>
+            </div>
+            <div class="stat">
+              <div class="stat-n" contenteditable="true">50<span>K</span></div>
+              <div class="stat-d" contenteditable="true">Community managed with measurable outcomes</div>
+            </div>
+            <div class="stat">
+              <div class="stat-n" contenteditable="true">20<span>L+</span></div>
+              <div class="stat-d" contenteditable="true">BDT raised for 15K+ children across 64 districts</div>
+            </div>
+          </div>
+
+          <div class="slbl" contenteditable="true">Compensation</div>
+          <div class="ent" style="margin-bottom:3px" contenteditable="true">Aligned to <strong>standard GenNEXT MT band</strong>. Negotiable on total package — bonus, fast-track, L&amp;D, rotation.</div>
+
+          <div class="slbl" contenteditable="true">Value Delivered</div>
+          <div class="v-row">
+            <span class="v-tag">ZERO RAMP</span>
+            <span class="v-txt" contenteditable="true">12 months inside bKash as b-ACE — knows people &amp; culture.</span>
+          </div>
+          <div class="v-row">
+            <span class="v-tag">VOUCHED</span>
+            <span class="v-txt" contenteditable="true"><b>Abu Usuf Md. Rashedul Amin</b>, GM-HR — on-record referee.</span>
+          </div>
+          <div class="v-row">
+            <span class="v-tag">NETWORK</span>
+            <span class="v-txt" contenteditable="true">Day-1 access: BIDA, Parjatan Corp, BCRC, Attractor Japan.</span>
+          </div>
+          <div class="v-row">
+            <span class="v-tag">ROI</span>
+            <span class="v-txt" contenteditable="true">Outcomes first, frameworks after. Every role entered without training.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════ 03 · PROMOTION ═══════ -->
+      <div class="quad quad-promo">
+        <div class="quad-inner">
+          <div class="q-head">
+            <span class="q-num">03</span>
+            <div>
+              <div class="q-title" contenteditable="true">Promotion</div>
+              <div class="q-sub" contenteditable="true">How bKash becomes aware of my value</div>
+            </div>
+          </div>
+
+          <div class="slbl" contenteditable="true">Channels to bKash</div>
+          <div class="ch-row">
+            <span class="ch-tag">LinkedIn</span>
+            <span class="ch-txt" contenteditable="true"><b>linkedin.com/in/billahsiddiki</b> — research, conference features, stakeholder spotlights.</span>
+          </div>
+          <div class="ch-row">
+            <span class="ch-tag">Referral</span>
+            <span class="ch-txt" contenteditable="true"><b>Abu Usuf Md. Rashedul Amin</b>, GM-HR, bKash — warm referral on record.</span>
+          </div>
+          <div class="ch-row">
+            <span class="ch-tag">Faculty</span>
+            <span class="ch-txt" contenteditable="true"><b>Prof. Dr. M. Ridhwanul Haq</b>, BCRC Chairman — academic &amp; professional referee.</span>
+          </div>
+
+          <div class="slbl" contenteditable="true">Evidence Portfolio</div>
+          <div class="ch-row">
+            <span class="ch-tag">BIDA</span>
+            <span class="ch-txt" contenteditable="true">National tourism demand study (210+ surveys) → delivered to Executive Chairman for policy reform.</span>
+          </div>
+          <div class="ch-row">
+            <span class="ch-tag">BCRC</span>
+            <span class="ch-txt" contenteditable="true">E-commerce, tourism &amp; BPO case research + Singapore AI white paper.</span>
+          </div>
+          <div class="ch-row">
+            <span class="ch-tag">Jhilimili</span>
+            <span class="ch-txt" contenteditable="true">Campaign Lead — <b>BDT 20 Lac+</b> raised for 15,000+ children across 64 districts.</span>
+          </div>
+
+          <div class="slbl" contenteditable="true">Interview Signal</div>
+          <div class="ent" contenteditable="true">Every role entered without training — outcomes first, frameworks after. Live STP, 4P &amp; MECE reasoning from real fieldwork.</div>
+        </div>
+      </div>
+
+      <!-- ═══════ 04 · PLACE ═══════ -->
+      <div class="quad quad-place">
+        <div class="quad-inner">
+          <div class="q-head">
+            <span class="q-num">04</span>
+            <div>
+              <div class="q-title" contenteditable="true">Place</div>
+              <div class="q-sub" contenteditable="true">Where and how I will deliver</div>
+            </div>
+          </div>
+
+          <div class="slbl" contenteditable="true">Primary Target</div>
+          <div class="ent" style="margin-bottom:3px" contenteditable="true"><strong>bKash Ltd — Dhaka HQ.</strong> Brand &amp; Customer Marketing, Consumer Insights, or CVM. The role I'm applying for is the one I've prepared for — from the inside.</div>
+
+          <div class="slbl" contenteditable="true">Best-Fit Functions</div>
+          <div class="ent-row">
+            <span class="ent-dot dk"></span>
+            <div class="ent" contenteditable="true"><strong>Brand &amp; Campaign Strategy</strong> — maps to Thrive campaigns, The Prestige Global, BCRC.</div>
+          </div>
+          <div class="ent-row">
+            <span class="ent-dot dk"></span>
+            <div class="ent" contenteditable="true"><strong>Consumer Insight &amp; Research</strong> — maps to BIDA study, Prothom Alo fieldwork, IBA research.</div>
+          </div>
+          <div class="ent" style="margin-left:8px;font-size:4.8pt;color:var(--i50);margin-bottom:3px" contenteditable="true">Open to rotations: Product Marketing · MFS Partnerships · Strategy · Policy</div>
+
+          <div class="slbl" contenteditable="true">Flexibility</div>
+          <div class="ent" style="margin-bottom:3px" contenteditable="true">Bangladesh-first; open to South/Southeast Asia secondment. International: <strong>Tokyo · Bangkok · Singapore</strong>.</div>
+
+          <div class="slbl" contenteditable="true">Availability</div>
+          <div class="avail">
+            <span class="avail-tick">✓</span>
+            <div>
+              <span class="avail-main" contenteditable="true">August 2026 (Graduation)</span>
+              <span class="avail-sub" contenteditable="true">Pre-hire intake or internship from May 2026.</span>
+            </div>
+          </div>
+          <div class="ent" contenteditable="true">Preference: <strong>in-person, client-facing</strong>. Fieldwork is a competency — not a constraint.</div>
+        </div>
+      </div>
+
     </div>
 
     <footer class="foot">
