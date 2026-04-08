@@ -55,13 +55,13 @@
   --f-d: 'Cormorant Garamond', Georgia, serif;
   --f-b: 'Inter', -apple-system, 'Segoe UI', sans-serif;
   
-  /* A4 dimensions */
-  --a4-w: 210mm;
-  --a4-h: 297mm;
-  --rail-w: 54mm;
-  --quad-w: calc((var(--a4-w) - var(--rail-w) - 18mm) / 2);
-  --quad-h: calc((var(--a4-h) - 42mm) / 2 - 3mm);
-  --gap: 9mm;
+  /* A4 Landscape dimensions */
+  --a4-w: 297mm;
+  --a4-h: 210mm;
+  --rail-w: 56mm;
+  --quad-w: calc((var(--a4-w) - var(--rail-w) - 20mm) / 2);
+  --quad-h: calc((var(--a4-h) - 44mm) / 2 - 3mm);
+  --gap: 10mm;
   --radius: 10px;
 }
 
@@ -73,11 +73,11 @@ html{
 }
 
 /* ═══════════════════════════════════════
-   PAGE — A4 PRINT PERFECT
+   PAGE — A4 LANDSCAPE PRINT PERFECT
    ═══════════════════════════════════════ */
 .page{
   width:var(--a4-w);height:var(--a4-h);
-  margin:12px auto;
+  margin:10px auto;
   background:#fff;
   display:flex;overflow:hidden;
   box-shadow:0 24px 80px rgba(0,0,0,.28);
@@ -103,7 +103,7 @@ html{
   background:linear-gradient(180deg,var(--pk) 0%,var(--pk-dk) 55%,rgba(226,19,110,.1) 100%);
   box-shadow:-1px 0 12px rgba(226,19,110,.32);
 }
-.rail-logo{width:82%;max-width:106px;height:auto;margin:0 auto 6px;display:block;filter:brightness(0) invert(1);}
+.rail-logo{width:82%;max-width:108px;height:auto;margin:0 auto 6px;display:block;filter:brightness(0) invert(1);}
 .rail-target{font-family:var(--f-b);font-size:4.4pt;font-weight:700;letter-spacing:3px;color:var(--pk);text-transform:uppercase;text-align:center;}
 .rail-mid{text-align:center;padding:16px 0 18px;}
 .rail-name{font-family:var(--f-d);font-size:23pt;font-weight:700;line-height:1.05;color:#fff;letter-spacing:.3px;text-shadow:0 2px 16px rgba(0,0,0,.35);}
@@ -397,10 +397,10 @@ html{
 .edit-banner button:hover{background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.22);}
 
 /* ── PRINT PERFECT ── */
-@page{size:A4;margin:0;}
+@page{size:A4 landscape;margin:0;}
 @media print{
   html,body{background:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important;}
-  .page{margin:0!important;box-shadow:none!important;width:210mm!important;height:297mm!important;border-radius:0!important;}
+  .page{margin:0!important;box-shadow:none!important;width:297mm!important;height:210mm!important;border-radius:0!important;}
   .edit-banner,#pdfOverlay{display:none!important;}
   [contenteditable="true"]:hover,[contenteditable="true"]:focus{outline:none!important;background:transparent!important;}
   .quad{break-inside:avoid;box-shadow:none!important;border:1px solid var(--i10)!important;}
@@ -412,7 +412,7 @@ html{
 
 <div class="edit-banner">
   <span>✎ CLICK ANY TEXT TO EDIT</span>
-  <span class="pill">A4 Print Ready · Glass Quadrants</span>
+  <span class="pill">A4 Landscape · Glass Quadrants</span>
   <button id="saveHtml">⬇ SAVE HTML</button>
   <button id="exportPdf" style="background:var(--emerald);color:#fff;">📄 EXPORT PDF</button>
 </div>
@@ -434,7 +434,7 @@ html{
   <!-- ═══ SIDEBAR ═══ -->
   <aside class="rail">
     <div>
-      <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTExMyIgdmlld0JveD0iMTEuMjE5OTk5OTk5OTk5OTk1IDEwLjcgNDU4LjA4MDAwMDAwMDAwMDA0IDIwOS41OCIgd2lkdGg9IjI1MDAiPgogIDxwYXRoIGQ9Ik0zMjcuOTkgMTEwLjc1bDEyLjk5IDU4LjQgODUuMDEtNDMuMDR6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTM1Mi4xNiAyMy40OEwzMjggMTEwLjc2bDk4LjAxIDE1LjM1eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNDguMzEgMTAuN2wxMDEuMzggMTIuMTEtMjMuOTcgODYuNzZ6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTI0Ny41MiAyNy43NmgxMS4yOWwzMS42NyA0MC41eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00MjguNjkgMTI1LjU1bC0yOS40Ni00MC43NyA0Ny42Ni04LjUzeiIgZmlsbD0iI2QxMjA1MyIvPgogIDxwYXRoIGQ9Ik00MjMuNzcgMTM3LjVsMy4wNC05LjA3LTc0LjM5IDM3Ljc0eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0zMjUuOTEgMTEzLjA1bDE1LjUyIDY5Ljc3LTQ2LjA2IDM3LjQ2eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00NDIuMjUgOTYuOTdsMjcuMDUtLjQ2LTE5LjU1LTE5Ljg5eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNTUuMTMgOTQuMTh2Ny41M2MtMi43Ni00LjM1LTEwLjUyLTcuMjItMTQuOC02LjYycy0xMSA0LjE0LTE0LjY1IDEyQzIyMS42OCA5OC44MiAyMTQgOTQgMjA4LjI3IDk0aC0xNy43OHY4Ljg0aDExLjU4YzUuMTIgMCAxMC40Ni0uNTIgMTUuMjQgMy44M2ExMS47NiAxMS43NiAwIDAgMSAzLjQ2IDYuN2MxLjQ3IDYuODYtMS41NCAxNS4wOS05LjUxIDE1LjI5YTI0LjYzIDI0LjYzIDAgMCAxLTcuNDktLjg3bC0uNjEuNjNhNjYuNDggNjYuNDggMCAwIDEgNC45MSA4LjE3IDI1LjIxIDI1LjIxIDAgMCAwIDEyLjU2LTYuODIgMjQuMDkgMjQuMDkgMCAwIDAgNS4wNS03LjEyIDI0LjI2IDI0LjI2IDAgMCAwIDQuNDkgNy4xMiAyMi4zNiAyMi4zNiAwIDAgMCAxMS4zMiA2LjgyIDY5LjggNjkuOCAwIDAgMSA0LjQyLTguMTdsLS41NC0uNjNhMjAuMDcgMjAuMDcgMCAwIDEtNi43NC44N2MtOC4yNS0uMjMtOS43Ni04LjY5LTguNDgtMTUuMjkgMS4xMS01LjYyIDYuMTEtMTEuMTUgMTEtMTEuNTYgNS40OS0uNDUgMTIuMTkgNC4xOCAxMy41NSA5Ljg1YTQxLjg1IDQxLjg1IDAgMCAxIDEgOS40N3Y1MS40OWEzNSAzNSAwIDAgMSAzLjk0LS4zOCAzMy43IDMzLjcgMCAwIDEgNCAuMzhWOTQuMTh6IiBmaWxsPSIjMjMxZjIwIi8+CiAgPHBhdGggZD0iTTQyLjM0IDY0LjI5YzEzLjkxLTEuMzkgMzUuMjcgMTYuNTYgMzcgMjAuNDhsMS4zMi0uMjFWNzQuMjVjLTkuNzctNS4xNy0yMy40MS0xNS43OS00MS41LTE0LjQ5LTIwLjA3IDEuNDQtMjcuOTIgMTMuMjQtMjcuOTQgMzRWMTcyLjY3YTI2LjM5IDI2LjM5IDAgMCAxIDMuNzctLjQxIDM2LjUgMzYuNSAwIDAgMSA0LjI3LjQxdi02OS43OWg1My4zNnY1LjczYy0yOS4yOS41NC00MiAxNi44Ny00MiAzMC45IDAgMTcuMSAxNy42NiAzMy4xNyA0OC42OCAzMy4xN2gxLjM3Vjk0SDIwbC0uMS0uMThhMjAuNjEgMjAuNjEgMCAwIDEtLjYxLTQuNjZDMTkuMTggNzUuODcgMjggNjUuNjkgNDIuMzQgNjQuMjl6TTQxLjA5IDE0MGMwLTEyLjM0IDEzLjY3LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjA5QzUzIDE2NiA0MS4wOSAxNTAuNiA0MS4wOSAxNDB6IiBmaWxsPSIjZTIxMzZlIi8+CiAgPHBhdGggZD0iTTgyLjc1IDk0djguODVoNTQuODh2NS43M2MtMjkuMjkuNTQtNDIgMTYuODctNDIgMzAuOSAwIDE3LjEgMTcuNjcgMzMuMTcgNDguNjcgMzMuMTdoMS4zNnYtNTguMzJoLjg1YzkuODUtLjI3IDE1Ljc0IDYgMTYuMDUgMTQuMDVhMTMuMzQgMTMuMzQgMCAwIDEtOC42OSAxMy4wOWwuMDYgMS4xOSA3LjQ4LS4yMmM0LjE4LTUuMjkgNi44OS0xMS4xOSA2LjYyLTE3LjU2LS40Ni0xMS4xMS03Ljg4LTE2LjQtMjIuMzctMTYuMnYtNS43NWgzNC43NXY2OS43OWEyOC4xIDI4LjEgMCAwIDEgMy45My0uNDEgMzQuNjIgMzQuNjIgMCAwIDEgNC4xLjQxVjk0em0yMy4zNSA0NmMwLTEyLjM0IDEzLjY4LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjFDMTE4IDE2NiAxMDYuMSAxNTAuNiAxMDYuMSAxNDB6IiBmaWxsPSIjMjMxZjIwIi8+Cjwvc3ZnPg==" alt="bKash" class="rail-logo">
+      <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTExMyIgdmlld0JveD0iMTEuMjE5OTk5OTk5OTk5OTk1IDEwLjcgNDU4LjA4MDAwMDAwMDAwMDA0IDIwOS41OCIgd2lkdGg9IjI1MDAiPgogIDxwYXRoIGQ9Ik0zMjcuOTkgMTEwLjc1bDEyLjk5IDU4LjQgODUuMDEtNDMuMDR6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTM1Mi4xNiAyMy40OEwzMjggMTEwLjc2bDk4LjAxIDE1LjM1eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNDguMzEgMTAuN2wxMDEuMzggMTIuMTEtMjMuOTcgODYuNzZ6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTI0Ny41MiAyNy43NmgxMS4yOWwzMS42NyA0MC41eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00MjguNjkgMTI1LjU1bC0yOS40Ni00MC43NyA0Ny42Ni04LjUzeiIgZmlsbD0iI2QxMjA1MyIvPgogIDxwYXRoIGQ9Ik00MjMuNzcgMTM3LjVsMy4wNC05LjA3LTc0LjM5IDM3Ljc0eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0zMjUuOTEgMTEzLjA1bDE1LjUyIDY5Ljc3LTQ2LjA2IDM3LjQ2eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00NDIuMjUgOTYuOTdsMjcuMDUtLjQ2LTE5LjU1LTE5Ljg5eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNTUuMTMgOTQuMTh2Ny41M2MtMi43Ni00LjM1LTEwLjUyLTcuMjItMTQuOC02LjYycy0xMSA0LjE0LTE0LjY1IDEyQzIyMS42OCA5OC44MiAyMTQgOTQgMjA4LjI3IDk0aC0xNy43OHY4Ljg0aDExLjU4YzUuMTIgMCAxMC40Ni0uNTIgMTUuMjQgMy44M2ExMS43NiAxMS43NiAwIDAgMSAzLjQ2IDYuN2MxLjQ3IDYuODYtMS41NCAxNS4wOS05LjUxIDE1LjI5YTI0LjYzIDI0LjYzIDAgMCAxLTcuNDktLjg3bC0uNjEuNjNhNjYuNDggNjYuNDggMCAwIDEgNC45MSA4LjE3IDI1LjIxIDI1LjIxIDAgMCAwIDEyLjU2LTYuODIgMjQuMDkgMjQuMDkgMCAwIDAgNS4wNS03LjEyIDI0LjI2IDI0LjI2IDAgMCAwIDQuNDkgNy4xMiAyMi4zNiAyMi4zNiAwIDAgMCAxMS4zMiA2LjgyIDY5LjggNjkuOCAwIDAgMSA0LjQyLTguMTdsLS41NC0uNjNhMjAuMDcgMjAuMDcgMCAwIDEtNi43NC44N2MtOC4yNS0uMjMtOS43Ni04LjY5LTguNDgtMTUuMjkgMS4xMS01LjYyIDYuMTEtMTEuMTUgMTEtMTEuNTYgNS40OS0uNDUgMTIuMTkgNC4xOCAxMy41NSA5Ljg1YTQxLjg1IDQxLjg1IDAgMCAxIDEgOS40N3Y1MS40OWEzNSAzNSAwIDAgMSAzLjk0LS4zOCAzMy43IDMzLjcgMCAwIDEgNCAuMzhWOTQuMTh6IiBmaWxsPSIjMjMxZjIwIi8+CiAgPHBhdGggZD0iTTQyLjM0IDY0LjI5YzEzLjkxLTEuMzkgMzUuMjcgMTYuNTYgMzcgMjAuNDhsMS4zMi0uMjFWNzQuMjVjLTkuNzctNS4xNy0yMy40MS0xNS43OS00MS41LTE0LjQ5LTIwLjA3IDEuNDQtMjcuOTIgMTMuMjQtMjcuOTQgMzRWMTcyLjY3YTI2LjM5IDI2LjM5IDAgMCAxIDMuNzctLjQxIDM2LjUgMzYuNSAwIDAgMSA0LjI3LjQxdi02OS43OWg1My4zNnY1LjczYy0yOS4yOS41NC00MiAxNi44Ny00MiAzMC45IDAgMTcuMSAxNy42NiAzMy4xNyA0OC42OCAzMy4xN2gxLjM3Vjk0SDIwbC0uMS0uMThhMjAuNjEgMjAuNjEgMCAwIDEtLjYxLTQuNjZDMTkuMTggNzUuODcgMjggNjUuNjkgNDIuMzQgNjQuMjl6TTQxLjA5IDE0MGMwLTEyLjM0IDEzLjY3LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjA5QzUzIDE2NiA0MS4wOSAxNTAuNiA0MS4wOSAxNDB6IiBmaWxsPSIjZTIxMzZlIi8+CiAgPHBhdGggZD0iTTgyLjc1IDk0djguODVoNTQuODh2NS43M2MtMjkuMjkuNTQtNDIgMTYuODctNDIgMzAuOSAwIDE3LjEgMTcuNjcgMzMuMTcgNDguNjcgMzMuMTdoMS4zNnYtNTguMzJoLjg1YzkuODUtLjI3IDE1Ljc0IDYgMTYuMDUgMTQuMDVhMTMuMzQgMTMuMzQgMCAwIDEtOC42OSAxMy4wOWwuMDYgMS4xOSA3LjQ4LS4yMmM0LjE4LTUuMjkgNi44OS0xMS4xOSA2LjYyLTE3LjU2LS40Ni0xMS4xMS03Ljg4LTE2LjQtMjIuMzctMTYuMnYtNS43NWgzNC43NXY2OS43OWEyOC4xIDI4LjEgMCAwIDEgMy45My0uNDEgMzQuNjIgMzQuNjIgMCAwIDEgNC4xLjQxVjk0em0yMy4zNSA0NmMwLTEyLjM0IDEzLjY4LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjFDMTE4IDE2NiAxMDYuMSAxNTAuNiAxMDYuMSAxNDB6IiBmaWxsPSIjMjMxZjIwIi8+Cjwvc3ZnPg==" alt="bKash" class="rail-logo">
       <div class="rail-target" contenteditable="true">Target Firm</div>
     </div>
     <div class="rail-mid">
@@ -723,14 +723,14 @@ html{
       const banner = document.querySelector('.edit-banner');
       banner.style.display = 'none';
       
-      // Capture with high DPI
+      // Capture with high DPI for landscape
       const canvas = await html2canvas(document.getElementById('pageContent'), {
         scale: 4, // High-res for print
         useCORS: true,
         backgroundColor: '#ffffff',
         logging: false,
-        windowWidth: 794, // A4 width in pixels at 96 DPI
-        windowHeight: 1123 // A4 height in pixels at 96 DPI
+        windowWidth: 1123, // A4 landscape width in pixels at 96 DPI
+        windowHeight: 794  // A4 landscape height in pixels at 96 DPI
       });
       
       // Restore UI
@@ -739,14 +739,14 @@ html{
       // Create PDF
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({
-        orientation: 'portrait',
+        orientation: 'landscape',
         unit: 'mm',
         format: 'a4'
       });
       
       const imgData = canvas.toDataURL('image/png');
-      pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
-      pdf.save('4Ps_Strategic_Profile_Print.pdf');
+      pdf.addImage(imgData, 'PNG', 0, 0, 297, 210);
+      pdf.save('4Ps_Strategic_Profile_Landscape.pdf');
       
       // Update modal
       confirmBtn.textContent = '✓ Downloaded';
