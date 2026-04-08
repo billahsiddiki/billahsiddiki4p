@@ -10,134 +10,116 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 :root {
-  /* Premium jewel-tone palette — print-optimized, CMYK-safe */
-  --pk:     #C41E5A;      /* Deep magenta — print-safe */
-  --pk-dk:  #8A0F42;
-  --pk-lt:  #E8A5C4;
-  --pk-100: #F9E6EE;
+  /* Premium jewel-tone palette */
+  --pk:     #E2136E;
+  --pk-dk:  #B80F59;
+  --pk-900: #7A0B3C;
+  --pk-100: #FDE8F2;
   
-  --ink:    #111111;      /* Near-black for print legibility */
+  --ink:    #0D0D0D;
   --i80:    #2A2A2A;
   --i60:    #4A4A4A;
   --i40:    #7A7A7A;
-  --i20:    #B8B8B8;
+  --i20:    #B5B5B5;
   --i10:    #E0E0E0;
   --i05:    #F5F5F5;
   --i03:    #FAFAFA;
   
-  /* Quadrant premium colors — jewel tones with print depth */
-  --emerald:    #14533A;    /* Deep forest green */
+  /* Quadrant premium colors */
+  --emerald:    #14533A;
   --emerald-dk: #0D3D2B;
   --emerald-lt: #1B6E4D;
-  --emerald-bg: linear-gradient(135deg, #F5F9F7 0%, #EBF3EF 50%, #E1EDE8 100%);
+  --emerald-bg: linear-gradient(135deg, rgba(20,83,58,.92) 0%, rgba(27,110,77,.88) 100%);
   
-  --amber:      #8B5E00;    /* Rich gold */
+  --amber:      #8B5E00;
   --amber-dk:   #6A4800;
   --amber-lt:   #B07A00;
-  --amber-bg:   linear-gradient(135deg, #FFFCF5 0%, #FFF9E8 50%, #FFF4D6 100%);
+  --amber-bg:   linear-gradient(135deg, rgba(139,94,0,.92) 0%, rgba(176,122,0,.88) 100%);
   
-  --sapphire:   #0F2645;    /* Deep navy */
+  --sapphire:   #0F2645;
   --sapphire-dk:#081830;
   --sapphire-lt:#1A3D6B;
-  --sapphire-bg:linear-gradient(135deg, #F5F7FB 0%, #EBEFF6 50%, #E1E7F1 100%);
+  --sapphire-bg:linear-gradient(135deg, rgba(15,38,69,.92) 0%, rgba(26,61,107,.88) 100%);
   
-  --burgundy:   #5C1808;    /* Rich wine */
+  --burgundy:   #5C1808;
   --burgundy-dk:#420F05;
   --burgundy-lt:#7A2410;
-  --burgundy-bg:linear-gradient(135deg, #FBF6F4 0%, #F5EBE7 50%, #EFE0DA 100%);
+  --burgundy-bg:linear-gradient(135deg, rgba(92,24,8,.92) 0%, rgba(122,36,16,.88) 100%);
+  
+  /* Glassmorphism */
+  --glass: rgba(255,255,255,.72);
+  --glass-border: rgba(255,255,255,.35);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,.12);
+  --glass-blur: blur(12px);
   
   --f-d: 'Cormorant Garamond', Georgia, serif;
   --f-b: 'Inter', -apple-system, 'Segoe UI', sans-serif;
   
-  /* Layout — A4 landscape */
-  --page-w: 297mm;
-  --page-h: 210mm;
+  /* A4 dimensions */
+  --a4-w: 210mm;
+  --a4-h: 297mm;
   --rail-w: 54mm;
-  --quad-w: 118mm;
-  --quad-h: 94mm;
-  --gap: 3mm;
-  --radius: 8px;
-  
-  /* Apple-style shadows for print depth */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
-  --shadow: 0 4px 12px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.08);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,.16), 0 4px 8px rgba(0,0,0,.10);
-  --shadow-float: 0 12px 40px rgba(0,0,0,.20), 0 6px 16px rgba(0,0,0,.14);
+  --quad-w: calc((var(--a4-w) - var(--rail-w) - 18mm) / 2);
+  --quad-h: calc((var(--a4-h) - 42mm) / 2 - 3mm);
+  --gap: 9mm;
+  --radius: 10px;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{background:#D8D8D8;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
-
-/* ── PAGE ── */
-.page{
-  width:var(--page-w);height:var(--page-h);
-  margin:8px auto;background:#fff;
-  display:flex;overflow:hidden;
-  box-shadow:var(--shadow-float);
-  position:relative;
+html{
+  background:linear-gradient(135deg,#E8E8E8 0%,#F2F2F2 100%);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
-
-/* ── EDIT BANNER ── */
-.edit-banner{
-  position:fixed;top:0;left:0;right:0;
-  background:linear-gradient(90deg,var(--pk),var(--pk-dk));
-  color:#fff;font-family:var(--f-b);font-size:10px;font-weight:600;
-  padding:5px 15px;text-align:center;z-index:9999;
-  box-shadow:0 2px 8px rgba(0,0,0,.25);
-  display:flex;justify-content:center;align-items:center;gap:8px;
-  letter-spacing:.4px;
-}
-.edit-banner .pill{
-  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
-  padding:2px 10px;border-radius:12px;font-size:9.5px;
-}
-.edit-banner button{
-  background:rgba(255,255,255,.92);color:var(--pk-dk);
-  border:none;padding:4px 14px;border-radius:4px;cursor:pointer;
-  font-family:var(--f-b);font-size:9.5px;font-weight:700;
-  letter-spacing:.5px;text-transform:uppercase;
-  box-shadow:0 1px 4px rgba(0,0,0,.12);
-}
-.edit-banner button:hover{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.18);}
-.edit-banner button.primary{background:var(--emerald);color:#fff;}
-.edit-banner button.primary:hover{background:var(--emerald-dk);}
 
 /* ═══════════════════════════════════════
-   SIDEBAR — PREMIUM DESIGN
+   PAGE — A4 PRINT PERFECT
+   ═══════════════════════════════════════ */
+.page{
+  width:var(--a4-w);height:var(--a4-h);
+  margin:12px auto;
+  background:#fff;
+  display:flex;overflow:hidden;
+  box-shadow:0 24px 80px rgba(0,0,0,.28);
+  position:relative;
+  border-radius:2px;
+}
+
+/* ═══════════════════════════════════════
+   SIDEBAR — PREMIUM RAIL
    ═══════════════════════════════════════ */
 .rail{
   width:var(--rail-w);flex-shrink:0;
   background:linear-gradient(170deg,#120508 0%,#240B18 26%,#5D0B32 66%,#7A0B3C 100%);
   color:#fff;display:flex;flex-direction:column;
-  padding:14px 12px;position:relative;overflow:hidden;z-index:2;
+  padding:16px 13px;position:relative;overflow:hidden;z-index:3;
 }
 .rail::before{
   content:'';position:absolute;inset:0;pointer-events:none;
   background:repeating-linear-gradient(180deg,transparent,transparent 3px,rgba(255,255,255,.012) 3px,rgba(255,255,255,.012) 4px);
 }
 .rail::after{
-  content:'';position:absolute;top:0;right:0;bottom:0;width:3px;
-  background:linear-gradient(180deg,var(--pk) 0%,var(--pk-dk) 55%,rgba(196,30,90,.1) 100%);
-  box-shadow:-1px 0 10px rgba(196,30,90,.28);
+  content:'';position:absolute;top:0;right:0;bottom:0;width:3.5px;
+  background:linear-gradient(180deg,var(--pk) 0%,var(--pk-dk) 55%,rgba(226,19,110,.1) 100%);
+  box-shadow:-1px 0 12px rgba(226,19,110,.32);
 }
-.rail-top{text-align:center;margin-bottom:4px;}
-.rail-logo{width:80%;max-width:104px;height:auto;margin:0 auto 5px;display:block;filter:brightness(0) invert(1);}
-.rail-target{font-family:var(--f-b);font-size:4.2pt;font-weight:700;letter-spacing:3px;color:var(--pk);text-transform:uppercase;text-align:center;}
-.rail-mid{text-align:center;padding:15px 0 17px;}
-.rail-name{font-family:var(--f-d);font-size:22pt;font-weight:700;line-height:1.06;color:#fff;letter-spacing:.3px;}
-.rail-tagline{font-family:var(--f-b);font-size:5pt;font-weight:300;line-height:1.52;color:rgba(255,255,255,.36);margin-top:8px;font-style:italic;}
-.rail-rule{width:24px;height:1.5px;margin:10px auto 0;background:linear-gradient(90deg,transparent,var(--pk),transparent);}
+.rail-logo{width:82%;max-width:106px;height:auto;margin:0 auto 6px;display:block;filter:brightness(0) invert(1);}
+.rail-target{font-family:var(--f-b);font-size:4.4pt;font-weight:700;letter-spacing:3px;color:var(--pk);text-transform:uppercase;text-align:center;}
+.rail-mid{text-align:center;padding:16px 0 18px;}
+.rail-name{font-family:var(--f-d);font-size:23pt;font-weight:700;line-height:1.05;color:#fff;letter-spacing:.3px;text-shadow:0 2px 16px rgba(0,0,0,.35);}
+.rail-tagline{font-family:var(--f-b);font-size:5.2pt;font-weight:300;line-height:1.5;color:rgba(255,255,255,.38);margin-top:9px;font-style:italic;}
+.rail-rule{width:26px;height:1.5px;margin:11px auto 0;background:linear-gradient(90deg,transparent,var(--pk),transparent);border-radius:1px;}
 .rail-bottom{margin-top:auto;}
-.r-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2.5px;}
-.r-lbl{font-family:var(--f-b);font-size:4pt;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.28);}
-.r-val{font-family:var(--f-b);font-size:5.8pt;font-weight:600;color:#fff;}
-.r-pos{font-family:var(--f-b);font-size:5.3pt;font-weight:600;color:#F4A0D0;line-height:1.35;text-align:right;}
-.r-div{height:.75px;background:rgba(255,255,255,.1);margin:5px 0;}
-.r-course{display:flex;align-items:center;gap:5px;margin-top:3px;}
-.r-iba{height:17px;width:auto;filter:brightness(0) invert(1);opacity:.45;flex-shrink:0;}
-.rc-code{font-family:var(--f-b);font-size:3.8pt;color:rgba(255,255,255,.22);}
-.rc-name{font-family:var(--f-b);font-size:4.8pt;font-weight:600;color:rgba(255,255,255,.58);}
-.rc-school{font-family:var(--f-b);font-size:3.8pt;color:rgba(255,255,255,.25);}
+.r-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;}
+.r-lbl{font-family:var(--f-b);font-size:4.2pt;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.30);}
+.r-val{font-family:var(--f-b);font-size:6pt;font-weight:600;color:#fff;}
+.r-pos{font-family:var(--f-b);font-size:5.5pt;font-weight:600;color:#F4A0D0;line-height:1.35;text-align:right;}
+.r-div{height:.8px;background:rgba(255,255,255,.12);margin:6px 0;}
+.r-course{display:flex;align-items:center;gap:6px;margin-top:4px;}
+.r-iba{height:18px;width:auto;filter:brightness(0) invert(1);opacity:.48;flex-shrink:0;}
+.rc-code{font-family:var(--f-b);font-size:4pt;color:rgba(255,255,255,.24);}
+.rc-name{font-family:var(--f-b);font-size:5pt;font-weight:600;color:rgba(255,255,255,.62);}
+.rc-school{font-family:var(--f-b);font-size:4pt;color:rgba(255,255,255,.28);}
 
 /* ═══════════════════════════════════════
    CANVAS
@@ -147,86 +129,76 @@ html{background:#D8D8D8;-webkit-font-smoothing:antialiased;text-rendering:optimi
 /* ── MASTHEAD ── */
 .mast{
   display:flex;justify-content:space-between;align-items:center;
-  padding:6px 15px 5px;flex-shrink:0;
-  background:#fff;border-bottom:2px solid var(--ink);
+  padding:7px 16px 6px;flex-shrink:0;
+  background:var(--i03);border-bottom:1.5px solid var(--i10);
 }
-.m-l{display:flex;align-items:baseline;gap:10px;}
+.m-l{display:flex;align-items:baseline;gap:11px;}
 .m-pill{
-  font-family:var(--f-b);font-size:4pt;font-weight:700;
-  letter-spacing:3.5px;text-transform:uppercase;
+  font-family:var(--f-b);font-size:4.2pt;font-weight:700;
+  letter-spacing:3.8px;text-transform:uppercase;
   color:var(--pk);background:var(--pk-100);
-  padding:2px 8px;border-radius:3px;border:.5px solid rgba(196,30,90,.15);
+  padding:2.5px 9px;border-radius:4px;border:.6px solid rgba(226,19,110,.18);
+  box-shadow:0 1px 4px rgba(226,19,110,.08);
 }
-.m-title{font-family:var(--f-d);font-size:20pt;font-weight:700;color:var(--ink);line-height:1;}
-.m-meta{font-family:var(--f-b);font-size:4.5pt;font-weight:500;color:var(--i40);letter-spacing:.2px;text-align:right;}
+.m-title{font-family:var(--f-d);font-size:21pt;font-weight:700;color:var(--ink);line-height:1;}
+.m-meta{font-family:var(--f-b);font-size:4.6pt;font-weight:500;color:var(--i40);letter-spacing:.2px;text-align:right;line-height:1.35;}
 
-/* ── QUADRANT WRAPPER ── */
-.quad-wrap{
+/* ── QUADRANT GRID ── */
+.grid-wrap{
   flex:1;display:grid;
   grid-template-columns:1fr 1fr;
   grid-template-rows:1fr 1fr;
   gap:var(--gap);
-  padding:4px 6px 3px;
+  padding:8px 12px 9px;
   min-height:0;
-  background:var(--i05);
 }
 
-/* ── FLOATING QUADRANT — APPLE STYLE ── */
+/* ── FLOATING QUADRANT — iOS/macOS GLASS ── */
 .quad{
   border-radius:var(--radius);
   display:flex;flex-direction:column;
   overflow:hidden;position:relative;
-  background:#fff;
-  box-shadow:var(--shadow);
+  backdrop-filter:var(--glass-blur);
+  -webkit-backdrop-filter:var(--glass-blur);
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--glass-shadow);
   transition:transform .2s ease,box-shadow .2s ease;
-  backdrop-filter:blur(2px);
 }
 .quad:hover{
   transform:translateY(-2px);
-  box-shadow:var(--shadow-lg);
+  box-shadow:0 12px 40px rgba(0,0,0,.18);
 }
 
-/* Decorative top accent bar */
+/* Colored top accent bar */
 .quad::before{
   content:'';position:absolute;top:0;left:0;right:0;height:4px;z-index:1;
 }
-.quad-g::before{background:linear-gradient(90deg,var(--emerald-dk),var(--emerald),var(--emerald-lt));}
-.quad-a::before{background:linear-gradient(90deg,var(--amber-dk),var(--amber),var(--amber-lt));}
-.quad-n::before{background:linear-gradient(90deg,var(--sapphire-dk),var(--sapphire),var(--sapphire-lt));}
-.quad-b::before{background:linear-gradient(90deg,var(--burgundy-dk),var(--burgundy),var(--burgundy-lt));}
+.quad-g::before{background:var(--emerald-bg);}
+.quad-a::before{background:var(--amber-bg);}
+.quad-n::before{background:var(--sapphire-bg);}
+.quad-b::before{background:var(--burgundy-bg);}
 
 /* Subtle corner glow */
 .quad::after{
-  content:'';position:absolute;
-  width:80px;height:80px;
-  opacity:.04;border-radius:50%;
-  pointer-events:none;
-  top:-30px;right:-30px;
-}
-.quad-g::after{background:var(--emerald);}
-.quad-a::after{background:var(--amber);}
-.quad-n::after{background:var(--sapphire);}
-.quad-b::after{background:var(--burgundy);}
-
-/* ── QUAD INNER ── */
-.quad-inner{
-  padding:7px 11px 7px;
-  display:flex;flex-direction:column;
-  flex:1;overflow:hidden;position:relative;z-index:0;
+  content:'';position:absolute;inset:-1px;
+  border-radius:calc(var(--radius) + 1px);
+  pointer-events:none;z-index:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.4) 0%,transparent 50%,rgba(255,255,255,.2) 100%);
+  opacity:.6;
 }
 
 /* ── QUAD HEADER ── */
 .q-head{
-  display:flex;align-items:center;gap:8px;
-  margin-bottom:6px;padding-bottom:5px;
-  border-bottom:1px solid var(--i10);flex-shrink:0;
+  display:flex;align-items:center;gap:9px;
+  padding:8px 12px 7px;flex-shrink:0;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  background:linear-gradient(180deg,rgba(255,255,255,.6),transparent);
 }
-
-/* Number badge */
 .q-num{
-  font-family:var(--f-d);font-size:26pt;font-weight:700;
-  line-height:.85;letter-spacing:-1px;
-  min-width:28px;text-align:center;
+  font-family:var(--f-d);font-size:28pt;font-weight:700;
+  line-height:.88;letter-spacing:-1.5px;
+  min-width:30px;text-align:center;
 }
 .quad-g .q-num{color:var(--emerald-dk);}
 .quad-a .q-num{color:var(--amber-dk);}
@@ -234,214 +206,222 @@ html{background:#D8D8D8;-webkit-font-smoothing:antialiased;text-rendering:optimi
 .quad-b .q-num{color:var(--burgundy-dk);}
 
 .q-title{
-  font-family:var(--f-d);font-size:14pt;font-weight:700;
+  font-family:var(--f-d);font-size:14.5pt;font-weight:700;
   color:var(--ink);line-height:1;
 }
 .q-sub{
-  font-family:var(--f-b);font-size:4.8pt;font-weight:400;
-  color:var(--i40);font-style:italic;margin-top:1px;
-  letter-spacing:.2px;
+  font-family:var(--f-b);font-size:5pt;font-weight:400;
+  color:var(--i60);font-style:italic;margin-top:1.5px;
 }
+
+/* ── QUAD BODY ── */
+.q-body{
+  flex:1;padding:7px 12px 6px;
+  display:flex;flex-direction:column;
+  overflow:hidden;position:relative;z-index:1;
+}
+.q-2c{display:grid;grid-template-columns:1fr 1fr;gap:11px;flex:1;min-height:0;}
+.q-col{display:flex;flex-direction:column;}
 
 /* ── SECTION LABELS ── */
-.slbl{
-  font-family:var(--f-b);font-size:4.4pt;font-weight:700;
-  letter-spacing:1.8px;text-transform:uppercase;
-  margin-bottom:2.5px;margin-top:4.5px;
-  padding-bottom:2px;flex-shrink:0;
-  display:flex;align-items:center;gap:5px;
+.sec{
+  font-family:var(--f-b);font-size:4.5pt;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:3px;margin-top:5px;
+  display:flex;align-items:center;gap:6px;flex-shrink:0;
 }
-.slbl::after{
-  content:'';flex:1;height:.6px;opacity:.35;
-}
-.quad-g .slbl{color:var(--emerald-dk);}
-.quad-g .slbl::after{background:var(--emerald);}
-.quad-a .slbl{color:var(--amber-dk);}
-.quad-a .slbl::after{background:var(--amber);}
-.quad-n .slbl{color:var(--sapphire-dk);}
-.quad-n .slbl::after{background:var(--sapphire);}
-.quad-b .slbl{color:var(--burgundy-dk);}
-.quad-b .slbl::after{background:var(--burgundy);}
-.slbl:first-of-type{margin-top:0;}
+.sec::after{content:'';flex:1;height:.7px;opacity:.4;}
+.sec:first-child{margin-top:0;}
+.quad-g .sec{color:var(--emerald-dk);} .quad-g .sec::after{background:var(--emerald);}
+.quad-a .sec{color:var(--amber-dk);} .quad-a .sec::after{background:var(--amber);}
+.quad-n .sec{color:var(--sapphire-dk);} .quad-n .sec::after{background:var(--sapphire);}
+.quad-b .sec{color:var(--burgundy-dk);} .quad-b .sec::after{background:var(--burgundy);}
 
-/* ── ENTRIES — CONSULTANT GRADE ── */
-.ent{
-  font-family:var(--f-b);font-size:5.8pt;
-  line-height:1.42;color:var(--i80);margin-bottom:2.5px;
-}
-.ent b,.ent strong{font-weight:600;color:var(--ink);}
-.ent-row{display:flex;align-items:flex-start;gap:5px;margin-bottom:2.5px;}
-.ent-dot{
-  width:3.5px;height:3.5px;border-radius:50%;
-  flex-shrink:0;margin-top:4px;
-}
-.dg{background:var(--emerald);}
-.da{background:var(--amber);}
-.dn{background:var(--sapphire);}
-.db{background:var(--burgundy);}
-.dp{background:var(--pk);}
+/* ── ENTRIES — BCG/BAIN STYLE ── */
+.e{font-family:var(--f-b);font-size:6pt;line-height:1.44;color:var(--i80);margin-bottom:3px;}
+.e b,.e strong{font-weight:600;color:var(--ink);}
+.er{display:flex;align-items:flex-start;gap:6px;margin-bottom:3px;}
+.dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.dg{background:var(--emerald);} .da{background:var(--amber);}
+.dn{background:var(--sapphire);} .db{background:var(--burgundy);} .dp{background:var(--pk);}
 
-/* Organization logo */
-.org-logo{
-  width:12px;height:12px;border-radius:2px;
-  vertical-align:-2px;margin-right:3px;
+/* ── ORG LOGOS ── */
+.ol{
+  width:12px;height:12px;border-radius:2.5px;
+  vertical-align:-2px;margin-right:4px;
   object-fit:contain;flex-shrink:0;
-  background:#fff;border:.5px solid var(--i10);
+  filter:grayscale(.15) contrast(1.05);
+  opacity:.92;
 }
 
 /* ── BADGES ── */
-.badge{
-  display:inline-block;font-family:var(--f-b);
-  font-size:4pt;font-weight:700;letter-spacing:.8px;
-  text-transform:uppercase;padding:1.5px 4px;
-  border-radius:2.5px;margin-right:3px;vertical-align:1.5px;
-  line-height:1.15;white-space:nowrap;
+.bdg{
+  display:inline-block;font-family:var(--f-b);font-size:4.1pt;font-weight:700;
+  letter-spacing:.9px;text-transform:uppercase;padding:2px 4.5px 1.5px;
+  border-radius:3px;margin-right:3.5px;vertical-align:2px;line-height:1.18;white-space:nowrap;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
 }
-.badge-g{background:rgba(235,243,239,.9);color:var(--emerald-dk);border:.5px solid rgba(20,83,58,.12);}
-.badge-a{background:rgba(255,249,232,.9);color:var(--amber-dk);border:.5px solid rgba(139,94,0,.12);}
-.badge-n{background:rgba(235,239,246,.9);color:var(--sapphire-dk);border:.5px solid rgba(15,38,69,.12);}
-.badge-p{background:var(--pk-100);color:var(--pk-dk);border:.5px solid rgba(196,30,90,.12);}
+.bg{background:rgba(229,242,235,.88);color:var(--emerald-dk);border:.6px solid rgba(20,83,58,.16);}
+.ba{background:rgba(255,246,224,.88);color:var(--amber-dk);border:.6px solid rgba(139,94,0,.16);}
+.bn{background:rgba(234,240,248,.88);color:var(--sapphire-dk);border:.6px solid rgba(15,38,69,.14);}
+.bp{background:rgba(253,232,242,.88);color:var(--pk-dk);border:.6px solid rgba(226,19,110,.14);}
 
 /* ── METRIC HIGHLIGHTS ── */
-.metric{font-weight:700;}
-.metric-g{color:var(--emerald-dk);}
-.metric-a{color:var(--amber-dk);}
-.metric-n{color:var(--sapphire-dk);}
-.metric-p{color:var(--pk-dk);}
+.mg{font-weight:700;color:var(--emerald);}
+.ma{font-weight:700;color:var(--amber);}
+.mp{font-weight:700;color:var(--pk);}
 
-/* ── STAT CHIPS ── */
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:3.5px;margin-bottom:4px;flex-shrink:0;}
+/* ── STATS (PRICE) ── */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:5px;flex-shrink:0;}
 .stat{
-  background:#fff;border-radius:5px;padding:4px 7px;
-  backdrop-filter:blur(3px);
-  border:1px solid var(--i10);
-  box-shadow:var(--shadow-sm);
+  background:rgba(255,255,255,.82);
+  border-radius:6px;padding:5.5px 8px 5px;
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  border:1px solid rgba(0,0,0,.06);
   position:relative;overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
-.stat::before{
-  content:'';position:absolute;top:0;left:0;bottom:0;width:2.5px;
-  background:linear-gradient(180deg,var(--amber),var(--amber-lt));
-}
-.stat-n{
-  font-family:var(--f-d);font-size:15pt;font-weight:700;
-  color:var(--amber-dk);line-height:1;
-}
-.stat-n span{font-family:var(--f-b);font-size:7.5pt;font-weight:500;color:var(--i40);}
-.stat-d{
-  font-family:var(--f-b);font-size:4.4pt;
-  color:var(--i60);line-height:1.32;margin-top:.5px;
-}
+.stat::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3.5px;background:var(--amber);}
+.stat-n{font-family:var(--f-d);font-size:19pt;font-weight:700;color:var(--amber);line-height:.95;}
+.stat-n sup{font-family:var(--f-b);font-size:6.5pt;font-weight:700;vertical-align:super;}
+.stat-d{font-family:var(--f-b);font-size:4.8pt;color:var(--i60);line-height:1.38;margin-top:2px;}
 
-/* ── VALUE ROWS ── */
-.v-row{display:flex;align-items:flex-start;gap:5px;margin-bottom:2.5px;}
-.v-tag{
-  font-family:var(--f-b);font-size:4pt;font-weight:700;
-  letter-spacing:.7px;text-transform:uppercase;
-  padding:2px 4.5px;border-radius:2.5px;
-  white-space:nowrap;flex-shrink:0;margin-top:1px;line-height:1.15;
-  background:rgba(255,249,232,.9);color:var(--amber-dk);
-  border:.5px solid rgba(139,94,0,.15);
+/* ── ROI ROWS ── */
+.rr{display:flex;align-items:flex-start;gap:6px;margin-bottom:3px;}
+.rt{
+  font-family:var(--f-b);font-size:4.1pt;font-weight:700;
+  letter-spacing:.8px;text-transform:uppercase;
+  padding:2.5px 5px;border-radius:3px;
+  white-space:nowrap;flex-shrink:0;line-height:1.22;
+  background:rgba(255,246,224,.88);color:var(--amber-dk);
+  border:.6px solid rgba(139,94,0,.18);
+  backdrop-filter:blur(3px);
 }
-.v-txt{font-family:var(--f-b);font-size:5.4pt;line-height:1.4;color:var(--i80);}
-.v-txt b{font-weight:600;color:var(--ink);}
+.rv{font-family:var(--f-b);font-size:5.7pt;line-height:1.42;color:var(--i80);}
+.rv b{font-weight:600;color:var(--ink);}
 
 /* ── CHANNEL ROWS ── */
-.ch-row{display:flex;align-items:flex-start;gap:5px;margin-bottom:2.5px;}
-.ch-tag{
-  font-family:var(--f-b);font-size:4pt;font-weight:700;
-  letter-spacing:.5px;text-transform:uppercase;
-  padding:2px 4.5px;border-radius:2.5px;
-  white-space:nowrap;flex-shrink:0;margin-top:1px;line-height:1.15;
-  background:rgba(235,239,246,.9);color:var(--sapphire-dk);
-  border:.5px solid rgba(15,38,69,.12);
-}
-.ch-txt{font-family:var(--f-b);font-size:5.4pt;line-height:1.4;color:var(--i80);}
-.ch-txt b{font-weight:600;color:var(--ink);}
-
-/* ── AVAILABILITY ── */
-.avail{
-  display:flex;align-items:center;gap:7px;
-  background:linear-gradient(135deg,rgba(235,243,239,.92),rgba(212,237,218,.92));
-  border:1px solid rgba(20,83,58,.18);
-  border-radius:5px;padding:5px 8px;margin-bottom:4px;flex-shrink:0;
+.cr{display:flex;align-items:flex-start;gap:6px;margin-bottom:3px;}
+.ct{
+  font-family:var(--f-b);font-size:4.1pt;font-weight:700;
+  letter-spacing:.6px;text-transform:uppercase;
+  padding:2.5px 5px;border-radius:3px;
+  white-space:nowrap;flex-shrink:0;line-height:1.22;
+  background:rgba(234,240,248,.88);color:var(--sapphire-dk);
+  border:.6px solid rgba(15,38,69,.14);
   backdrop-filter:blur(3px);
 }
-.avail-tick{font-size:9pt;color:var(--emerald);font-weight:700;flex-shrink:0;line-height:1;}
-.avail-main{font-family:var(--f-b);font-size:6pt;font-weight:700;color:var(--emerald-dk);display:block;}
-.avail-sub{font-family:var(--f-b);font-size:4.8pt;color:var(--i60);display:block;margin-top:.5px;}
+.cx{font-family:var(--f-b);font-size:5.7pt;line-height:1.42;color:var(--i80);}
+.cx b{font-weight:600;color:var(--ink);}
+
+/* ── AVAILABILITY BADGE ── */
+.avail{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(234,244,238,.88);border:1px solid rgba(20,83,58,.22);
+  border-radius:5px;padding:5px 9px;margin-bottom:4px;flex-shrink:0;
+  backdrop-filter:blur(4px);
+}
+.avail-tick{font-size:9pt;color:var(--emerald);font-weight:700;flex-shrink:0;}
+.avail-main{font-family:var(--f-b);font-size:6.2pt;font-weight:700;color:var(--emerald-dk);display:block;}
+.avail-sub{font-family:var(--f-b);font-size:5pt;color:var(--i60);display:block;margin-top:.5px;}
 
 /* ── FUNCTION TAGS ── */
 .ftag{
-  display:inline-block;font-family:var(--f-b);font-size:4pt;font-weight:600;
-  letter-spacing:.4px;padding:1.5px 5px;border-radius:2.5px;margin:0 2px 2px 0;
-  background:rgba(235,239,246,.7);color:var(--sapphire-dk);
-  border:.5px solid rgba(15,38,69,.1);
+  display:inline-block;font-family:var(--f-b);font-size:4.2pt;font-weight:600;
+  letter-spacing:.5px;padding:2px 6px;border-radius:3px;margin:0 3px 3px 0;
+  background:rgba(238,240,245,.88);color:var(--sapphire);
+  border:.6px solid rgba(15,38,69,.12);
+  backdrop-filter:blur(3px);
 }
 
 /* ── FOOTER ── */
 .foot{
-  padding:3px 15px 4px;border-top:1.5px solid var(--ink);
-  font-family:var(--f-b);font-size:4.6pt;color:var(--i40);
+  padding:4px 16px 5px;border-top:1.5px solid var(--i10);
+  font-family:var(--f-b);font-size:5pt;color:var(--i40);
   text-align:center;letter-spacing:.2px;flex-shrink:0;
-  background:#fff;
+  background:var(--i03);
 }
 .foot b{font-weight:600;color:var(--i60);}
-.foot-dot{margin:0 3px;color:var(--pk);}
+.foot-dot{margin:0 4.5px;color:var(--pk);}
 
 /* ── EDIT MODE ── */
-[contenteditable="true"]:hover{outline:1.5px dashed var(--pk);outline-offset:1px;border-radius:2px;}
-[contenteditable="true"]:focus{outline:1.5px solid var(--pk);outline-offset:1px;background:rgba(196,30,90,.05);border-radius:2px;}
+[contenteditable="true"]:hover{outline:1.8px dashed var(--pk);outline-offset:1px;border-radius:3px;}
+[contenteditable="true"]:focus{outline:1.8px solid var(--pk);outline-offset:1px;background:rgba(226,19,110,.06);border-radius:3px;}
 
-/* ── PDF EXPORT OVERLAY ── */
+/* ── PDF EXPORT MODAL ── */
 #pdfOverlay{
-  position:fixed;inset:0;background:rgba(15,15,15,.6);
+  position:fixed;inset:0;background:rgba(13,13,13,.65);
   display:none;align-items:center;justify-content:center;
-  z-index:9998;backdrop-filter:blur(4px);
+  z-index:9998;backdrop-filter:blur(6px);
 }
 #pdfOverlay.show{display:flex;}
 .pdf-modal{
-  background:#fff;border-radius:8px;padding:20px 24px;
-  max-width:420px;text-align:center;box-shadow:var(--shadow-lg);
+  background:#fff;border-radius:10px;padding:22px 26px;
+  max-width:440px;text-align:center;box-shadow:0 12px 48px rgba(0,0,0,.32);
+  border:1px solid rgba(255,255,255,.2);
 }
-.pdf-modal h3{font-family:var(--f-d);font-size:16pt;color:var(--ink);margin-bottom:8px;}
-.pdf-modal p{font-family:var(--f-b);font-size:11px;color:var(--i70);margin-bottom:16px;line-height:1.4;}
-.pdf-btns{display:flex;gap:10px;justify-content:center;}
+.pdf-modal h3{font-family:var(--f-d);font-size:17pt;color:var(--ink);margin-bottom:10px;}
+.pdf-modal p{font-family:var(--f-b);font-size:11.5px;color:var(--i60);margin-bottom:18px;line-height:1.45;}
+.pdf-btns{display:flex;gap:12px;justify-content:center;}
 .pdf-btn{
-  padding:8px 18px;border:none;border-radius:5px;
-  font-family:var(--f-b);font-size:10px;font-weight:600;
-  cursor:pointer;transition:all .15s ease;
+  padding:9px 20px;border:none;border-radius:6px;
+  font-family:var(--f-b);font-size:10.5px;font-weight:600;
+  cursor:pointer;transition:all .18s ease;
 }
 .pdf-btn.primary{background:var(--pk);color:#fff;}
-.pdf-btn.primary:hover{background:var(--pk-dk);}
-.pdf-btn.secondary{background:var(--i07);color:var(--ink);border:1px solid var(--i15);}
-.pdf-btn.secondary:hover{background:var(--i15);}
+.pdf-btn.primary:hover{background:var(--pk-dk);transform:translateY(-1px);}
+.pdf-btn.secondary{background:var(--i05);color:var(--ink);border:1px solid var(--i10);}
+.pdf-btn.secondary:hover{background:var(--i10);}
 
-/* ── PRINT OPTIMIZATION ── */
-@page{size:297mm 210mm;margin:0;}
+/* ── EDIT BANNER ── */
+.edit-banner{
+  position:fixed;top:0;left:0;right:0;
+  background:linear-gradient(90deg,var(--pk),var(--pk-dk));
+  color:#fff;font-family:var(--f-b);font-size:10.5px;font-weight:600;
+  padding:6px 16px;text-align:center;z-index:9999;
+  box-shadow:0 3px 12px rgba(0,0,0,.28);
+  display:flex;justify-content:center;align-items:center;gap:10px;
+  letter-spacing:.4px;
+}
+.edit-banner .pill{
+  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);
+  padding:3px 11px;border-radius:13px;font-size:10px;
+}
+.edit-banner button{
+  background:rgba(255,255,255,.94);color:var(--pk-dk);
+  border:none;padding:5px 16px;border-radius:5px;cursor:pointer;
+  font-family:var(--f-b);font-size:10px;font-weight:700;
+  letter-spacing:.6px;text-transform:uppercase;
+  box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+.edit-banner button:hover{background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.22);}
+
+/* ── PRINT PERFECT ── */
+@page{size:A4;margin:0;}
 @media print{
   html,body{background:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important;}
-  .page{margin:0!important;box-shadow:none!important;width:297mm!important;height:210mm!important;}
+  .page{margin:0!important;box-shadow:none!important;width:210mm!important;height:297mm!important;border-radius:0!important;}
   .edit-banner,#pdfOverlay{display:none!important;}
   [contenteditable="true"]:hover,[contenteditable="true"]:focus{outline:none!important;background:transparent!important;}
-  .quad{break-inside:avoid;box-shadow:none!important;}
-  .stat{box-shadow:none!important;}
+  .quad{break-inside:avoid;box-shadow:none!important;border:1px solid var(--i10)!important;}
+  .quad::after{display:none!important;}
 }
 </style>
 </head>
 <body>
 
 <div class="edit-banner">
-  <span>📝 CLICK ANY TEXT TO EDIT</span>
-  <span class="pill">A4 Landscape · Consultant Grade · Print Ready</span>
-  <button id="downloadHtml">⬇ SAVE HTML</button>
-  <button id="downloadPdf" class="primary">📄 EXPORT PDF</button>
+  <span>✎ CLICK ANY TEXT TO EDIT</span>
+  <span class="pill">A4 Print Ready · Glass Quadrants</span>
+  <button id="saveHtml">⬇ SAVE HTML</button>
+  <button id="exportPdf" style="background:var(--emerald);color:#fff;">📄 EXPORT PDF</button>
 </div>
 
 <!-- PDF Export Modal -->
 <div id="pdfOverlay">
   <div class="pdf-modal">
-    <h3>Exporting High-Resolution PDF</h3>
-    <p>Generating print-ready PDF at 300 DPI. This may take 10-15 seconds.</p>
+    <h3>Exporting Premium PDF</h3>
+    <p>Generating high-resolution, print-ready PDF of your 4P profile. This preserves all glass effects, shadows, and typography. May take 12-18 seconds.</p>
     <div class="pdf-btns">
       <button class="pdf-btn secondary" id="cancelPdf">Cancel</button>
       <button class="pdf-btn primary" id="confirmPdf" disabled>Preparing…</button>
@@ -453,8 +433,8 @@ html{background:#D8D8D8;-webkit-font-smoothing:antialiased;text-rendering:optimi
 
   <!-- ═══ SIDEBAR ═══ -->
   <aside class="rail">
-    <div class="rail-top">
-      <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTExMyIgdmlld0JveD0iMTEuMjE5OTk5OTk5OTk5OTk1IDEwLjcgNDU4LjA4MDAwMDAwMDAwMDA0IDIwOS41OCIgd2lkdGg9IjI1MDAiPgogIDxwYXRoIGQ9Ik0zMjcuOTkgMTEwLjc1bDEyLjk5IDU4LjQgODUuMDEtNDMuMDR6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTM1Mi4xNiAyMy40OEwzMjggMTEwLjc2bDk4LjAxIDE1LjM1eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNDguMzEgMTAuN2wxMDEuMzggMTIuMTEtMjMuOTcgODYuNzZ6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTI0Ny41MiAyNy43NmgxMS4yOWwzMS42NyA0MC41eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00MjguNjkgMTI1LjU1bC0yOS40Ni00MC43NyA0Ny42Ni04LjUzeiIgZmlsbD0iI2QxMjA1MyIvPgogIDxwYXRoIGQ9Ik00MjMuNzcgMTM3LjVsMy4wNC05LjA3LTc0LjM5IDM3Ljc0eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0zMjUuOTEgMTEzLjA1bDE1LjUyIDY5Ljc3LTQ2LjA2IDM3LjQ2eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00NDIuMjUgOTYuOTdsMjcuMDUtLjQ2LTE5LjU1LTE5Ljg5eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNTUuMTMgOTQuMTh2Ny41M2MtMi43Ni00LjM1LTEwLjUyLTcuMjItMTQuOC02LjYycy0xMSA0LjE0LTE0LjY1IDEyQzIyMS42OCA5OC44MiAyMTQgOTQgMjA4LjI3IDk0aC0xNy43OHY4Ljg0aDExLjU4YzUuMTIgMCAxMC40Ni0uNTIgMTUuMjQgMy44M2ExMS43NiAxMS43NiAwIDAgMSAzLjQ2IDYuN2MxLjQ3IDYuODYtMS41NCAxNS4wOS05LjUxIDE1LjI5YTI0LjYzIDI0LjYzIDAgMCAxLTcuNDktLjg3bC0uNjEuNjNhNjYuNDggNjYuNDggMCAwIDEgNC45MSA4LjE3IDI1LjIxIDI1LjIxIDAgMCAwIDEyLjU2LTYuODIgMjQuMDkgMjQuMDkgMCAwIDAgNS4wNS03LjEyIDI0LjI2IDI0LjI2IDAgMCAwIDQuNDkgNy4xMiAyMi4zNiAyMi4zNiAwIDAgMCAxMS4zMiA2LjgyIDY5LjggNjkuOCAwIDAgMSA0LjQyLTguMTdsLS41NC0uNjNhMjAuMDcgMjAuMDcgMCAwIDEtNi43NC44N2MtOC4yNS0uMjMtOS43Ni04LjY5LTguNDgtMTUuMjkgMS4xMS01LjYyIDYuMTEtMTEuMTUgMTEtMTEuNTYgNS40OS0uNDUgMTIuMTkgNC4xOCAxMy41NSA5Ljg1YTQxLjg1IDQxLjg1IDAgMCAxIDEgOS40N3Y1MS40OWEzNSAzNSAwIDAgMSAzLjk0LS4zOCAzMy43IDMzLjcgMCAwIDEgNCAuMzhWOTQuMTh6IiBmaWxsPSIjMjMxZjIwIi8+CiAgPHBhdGggZD0iTTQyLjM0IDY0LjI5YzEzLjkxLTEuMzkgMzUuMjcgMTYuNTYgMzcgMjAuNDhsMS4zMi0uMjFWNzQuMjVjLTkuNzctNS4xNy0yMy40MS0xNS43OS00MS41LTE0LjQ5LTIwLjA3IDEuNDQtMjcuOTIgMTMuMjQtMjcuOTQgMzRWMTcyLjY3YTI2LjM5IDI2LjM5IDAgMCAxIDMuNzctLjQxIDM2LjUgMzYuNSAwIDAgMSA0LjI3LjQxdi02OS43OWg1My4zNnY1LjczYy0yOS4yOS41NC00MiAxNi44Ny00MiAzMC45IDAgMTcuMSAxNy42NiAzMy4xNyA0OC42OCAzMy4xN2gxLjM3Vjk0SDIwbC0uMS0uMThhMjAuNjEgMjAuNjEgMCAwIDEtLjYxLTQuNjZDMTkuMTggNzUuODcgMjggNjUuNjkgNDIuMzQgNjQuMjl6TTQxLjA5IDE0MGMwLTEyLjM0IDEzLjY3LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjA5QzUzIDE2NiA0MS4wOSAxNTAuNiA0MS4wOSAxNDB6IiBmaWxsPSIjZTIxMzZlIi8+CiAgPHBhdGggZD0iTTgyLjc1IDk0djguODVoNTQuODh2NS43M2MtMjkuMjkuNTQtNDIgMTYuODctNDIgMzAuOSAwIDE3LjEgMTcuNjcgMzMuMTcgNDguNjcgMzMuMTdoMS4zNnYtNTguMzJoLjg1YzkuODUtLjI3IDE1Ljc0IDYgMTYuMDUgMTQuMDVhMTMuMzQgMTMuMzQgMCAwIDEtOC42OSAxMy4wOWwuMDYgMS4xOSA3LjQ4LS4yMmM0LjE4LTUuMjkgNi44OS0xMS4xOSA2LjYyLTE3LjU2LS40Ni0xMS4xMS03Ljg4LTE2LjQtMjIuMzctMTYuMnYtNS43NWgzNC43NXY2OS43OWEyOC4xIDI4LjEgMCAwIDEgMy45My0uNDEgMzQuNjIgMzQuNjIgMCAwIDEgNC4xLjQxVjk0em0yMy4zNSA0NmMwLTEyLjM0IDEzLjY4LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjFDMTE4IDE2NiAxMDYuMSAxNTAuNiAxMDYuMSAxNDB6IiBmaWxsPSIjMjMxZjIwIi8+Cjwvc3ZnPg==" alt="bKash" class="rail-logo">
+    <div>
+      <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTExMyIgdmlld0JveD0iMTEuMjE5OTk5OTk5OTk5OTk1IDEwLjcgNDU4LjA4MDAwMDAwMDAwMDA0IDIwOS41OCIgd2lkdGg9IjI1MDAiPgogIDxwYXRoIGQ9Ik0zMjcuOTkgMTEwLjc1bDEyLjk5IDU4LjQgODUuMDEtNDMuMDR6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTM1Mi4xNiAyMy40OEwzMjggMTEwLjc2bDk4LjAxIDE1LjM1eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNDguMzEgMTAuN2wxMDEuMzggMTIuMTEtMjMuOTcgODYuNzZ6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTI0Ny41MiAyNy43NmgxMS4yOWwzMS42NyA0MC41eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00MjguNjkgMTI1LjU1bC0yOS40Ni00MC43NyA0Ny42Ni04LjUzeiIgZmlsbD0iI2QxMjA1MyIvPgogIDxwYXRoIGQ9Ik00MjMuNzcgMTM3LjVsMy4wNC05LjA3LTc0LjM5IDM3Ljc0eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0zMjUuOTEgMTEzLjA1bDE1LjUyIDY5Ljc3LTQ2LjA2IDM3LjQ2eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00NDIuMjUgOTYuOTdsMjcuMDUtLjQ2LTE5LjU1LTE5Ljg5eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNTUuMTMgOTQuMTh2Ny41M2MtMi43Ni00LjM1LTEwLjUyLTcuMjItMTQuOC02LjYycy0xMSA0LjE0LTE0LjY1IDEyQzIyMS42OCA5OC44MiAyMTQgOTQgMjA4LjI3IDk0aC0xNy43OHY4Ljg0aDExLjU4YzUuMTIgMCAxMC40Ni0uNTIgMTUuMjQgMy44M2ExMS47NiAxMS43NiAwIDAgMSAzLjQ2IDYuN2MxLjQ3IDYuODYtMS41NCAxNS4wOS05LjUxIDE1LjI5YTI0LjYzIDI0LjYzIDAgMCAxLTcuNDktLjg3bC0uNjEuNjNhNjYuNDggNjYuNDggMCAwIDEgNC45MSA4LjE3IDI1LjIxIDI1LjIxIDAgMCAwIDEyLjU2LTYuODIgMjQuMDkgMjQuMDkgMCAwIDAgNS4wNS03LjEyIDI0LjI2IDI0LjI2IDAgMCAwIDQuNDkgNy4xMiAyMi4zNiAyMi4zNiAwIDAgMCAxMS4zMiA2LjgyIDY5LjggNjkuOCAwIDAgMSA0LjQyLTguMTdsLS41NC0uNjNhMjAuMDcgMjAuMDcgMCAwIDEtNi43NC44N2MtOC4yNS0uMjMtOS43Ni04LjY5LTguNDgtMTUuMjkgMS4xMS01LjYyIDYuMTEtMTEuMTUgMTEtMTEuNTYgNS40OS0uNDUgMTIuMTkgNC4xOCAxMy41NSA5Ljg1YTQxLjg1IDQxLjg1IDAgMCAxIDEgOS40N3Y1MS40OWEzNSAzNSAwIDAgMSAzLjk0LS4zOCAzMy43IDMzLjcgMCAwIDEgNCAuMzhWOTQuMTh6IiBmaWxsPSIjMjMxZjIwIi8+CiAgPHBhdGggZD0iTTQyLjM0IDY0LjI5YzEzLjkxLTEuMzkgMzUuMjcgMTYuNTYgMzcgMjAuNDhsMS4zMi0uMjFWNzQuMjVjLTkuNzctNS4xNy0yMy40MS0xNS43OS00MS41LTE0LjQ5LTIwLjA3IDEuNDQtMjcuOTIgMTMuMjQtMjcuOTQgMzRWMTcyLjY3YTI2LjM5IDI2LjM5IDAgMCAxIDMuNzctLjQxIDM2LjUgMzYuNSAwIDAgMSA0LjI3LjQxdi02OS43OWg1My4zNnY1LjczYy0yOS4yOS41NC00MiAxNi44Ny00MiAzMC45IDAgMTcuMSAxNy42NiAzMy4xNyA0OC42OCAzMy4xN2gxLjM3Vjk0SDIwbC0uMS0uMThhMjAuNjEgMjAuNjEgMCAwIDEtLjYxLTQuNjZDMTkuMTggNzUuODcgMjggNjUuNjkgNDIuMzQgNjQuMjl6TTQxLjA5IDE0MGMwLTEyLjM0IDEzLjY3LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjA5QzUzIDE2NiA0MS4wOSAxNTAuNiA0MS4wOSAxNDB6IiBmaWxsPSIjZTIxMzZlIi8+CiAgPHBhdGggZD0iTTgyLjc1IDk0djguODVoNTQuODh2NS43M2MtMjkuMjkuNTQtNDIgMTYuODctNDIgMzAuOSAwIDE3LjEgMTcuNjcgMzMuMTcgNDguNjcgMzMuMTdoMS4zNnYtNTguMzJoLjg1YzkuODUtLjI3IDE1Ljc0IDYgMTYuMDUgMTQuMDVhMTMuMzQgMTMuMzQgMCAwIDEtOC42OSAxMy4wOWwuMDYgMS4xOSA3LjQ4LS4yMmM0LjE4LTUuMjkgNi44OS0xMS4xOSA2LjYyLTE3LjU2LS40Ni0xMS4xMS03Ljg4LTE2LjQtMjIuMzctMTYuMnYtNS43NWgzNC43NXY2OS43OWEyOC4xIDI4LjEgMCAwIDEgMy45My0uNDEgMzQuNjIgMzQuNjIgMCAwIDEgNC4xLjQxVjk0em0yMy4zNSA0NmMwLTEyLjM0IDEzLjY4LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjFDMTE4IDE2NiAxMDYuMSAxNTAuNiAxMDYuMSAxNDB6IiBmaWxsPSIjMjMxZjIwIi8+Cjwvc3ZnPg==" alt="bKash" class="rail-logo">
       <div class="rail-target" contenteditable="true">Target Firm</div>
     </div>
     <div class="rail-mid">
@@ -491,177 +471,206 @@ html{background:#D8D8D8;-webkit-font-smoothing:antialiased;text-rendering:optimi
         <span class="m-pill" contenteditable="true">Strategic Profile</span>
         <h1 class="m-title" contenteditable="true">4P Marketing Mix</h1>
       </div>
-      <div class="m-meta" contenteditable="true">GenNEXT MT Application · bKash Limited · Brand & Customer Marketing</div>
+      <div class="m-meta" contenteditable="true">GenNEXT MT Application · bKash Limited<br>Brand &amp; Customer Marketing · Full Marks: 10</div>
     </header>
 
-    <div class="quad-wrap">
+    <div class="grid-wrap">
 
       <!-- ═══════ 01 · PRODUCT ═══════ -->
       <div class="quad quad-g">
-        <div class="quad-inner">
-          <div class="q-head">
-            <span class="q-num">01</span>
-            <div>
-              <div class="q-title" contenteditable="true">Product</div>
-              <div class="q-sub" contenteditable="true">Strategic capabilities I bring to bKash</div>
+        <div class="q-head">
+          <span class="q-num">01</span>
+          <div>
+            <div class="q-title" contenteditable="true">Product</div>
+            <div class="q-sub" contenteditable="true">Strategic capabilities I bring to bKash</div>
+          </div>
+        </div>
+        <div class="q-body">
+          <div class="q-2c">
+            <div class="q-col">
+              <div class="sec" contenteditable="true">Core Capabilities</div>
+              <div class="er">
+                <span class="dot dg"></span>
+                <div class="e" contenteditable="true"><img src="https://logo.clearbit.com/bida.gov.bd" class="ol" onerror="this.style.display='none'" alt="BIDA"> <strong>Primary Research Leadership</strong> — Directed 210+ surveys &amp; 45+ KIIs for BIDA; findings adopted by Bangladesh Parjatan Corporation for national tourism policy reform.</div>
+              </div>
+              <div class="er">
+                <span class="dot dp"></span>
+                <div class="e" contenteditable="true"><img src="https://logo.clearbit.com/thrive.com.bd" class="ol" onerror="this.style.display='none'" alt="Thrive"> <strong>Integrated Campaign Execution</strong> — Led 5-person team at Thrive EdTech: <span class="mg">+24% app traffic</span>, <span class="mg">×10 social reach</span>, <span class="mg">+20% retention</span> across 15+ campaigns.</div>
+              </div>
+              <div class="er">
+                <span class="dot dg"></span>
+                <div class="e" contenteditable="true"><img src="https://logo.clearbit.com/prothomalo.com" class="ol" onerror="this.style.display='none'" alt="Prothom Alo"> <strong>Qualitative Fieldwork at Scale</strong> — 200+ Gen-Z participants across 20+ FGDs in 5 cities for Prothom Alo Digital; 400+ students surveyed at IBA for blended-learning policy.</div>
+              </div>
+              <div class="er">
+                <span class="dot da"></span>
+                <div class="e" contenteditable="true"><img src="https://logo.clearbit.com/theprestige.global" class="ol" onerror="this.style.display='none'" alt="Prestige"> <strong>Stakeholder Management</strong> — C-suite, diplomats, military leaders managed at The Prestige Global; 20+ facilitated at Bangladesh Vision Summit 2024 (500+ attendees).</div>
+              </div>
+              <div class="er">
+                <span class="dot dn"></span>
+                <div class="e" contenteditable="true"><strong>Data &amp; Analytics</strong> — SQL · Python · Power BI · Tableau applied to live consulting datasets and academic research for actionable strategic insights.</div>
+              </div>
+            </div>
+            <div class="q-col">
+              <div class="sec" contenteditable="true">Strategic Differentiators</div>
+              <div class="e" style="margin-bottom:2.5px" contenteditable="true"><span class="bdg bp">INSIDER</span> <img src="https://logo.clearbit.com/bkash.com" class="ol" onerror="this.style.display='none'" alt="bKash"> <strong>b-ACE Campus Ambassador, bKash</strong> — Fluent in bnext, GenNEXT &amp; bTechWhiz. Zero ramp-up required.</div>
+              <div class="e" style="margin-bottom:2.5px" contenteditable="true"><span class="bdg ba">CHAMPION</span> <img src="https://logo.clearbit.com/hultprize.org" class="ol" onerror="this.style.display='none'" alt="Hult"> <strong>Hult Prize 2024 National Winner</strong> — Led team to $1M Global Summit, Chulalongkorn University, Bangkok.</div>
+              <div class="e" style="margin-bottom:2.5px" contenteditable="true"><span class="bdg bn">GLOBAL</span> <img src="https://logo.clearbit.com/attractor.co.jp" class="ol" onerror="this.style.display='none'" alt="Attractor"> Delegate, <strong>Regional Scrum Gathering Tokyo 2026</strong> (800 attendees). Active contributor to Agile Bangladesh.</div>
+              <div class="e" style="margin-bottom:2.5px" contenteditable="true"><span class="bdg ba">SCHOLAR</span> <strong>ISCEA Prize Global Case 2024</strong> — 70% national scholarship for excellence in global supply chain analysis.</div>
+              <div class="e" style="margin-bottom:2.5px" contenteditable="true"><span class="bdg bg">RESEARCH</span> <img src="https://logo.clearbit.com/bcrcbd.org" class="ol" onerror="this.style.display='none'" alt="BCRC"> BCRC case studies: ekShop (e-commerce), Shyamoli (transport), KOW (BPO) + Singapore AI white paper.</div>
+              <div class="e" contenteditable="true"><span class="bdg bn">LEADER</span> IBA Comms Club, Asst. VP — 25-person team; organised HSBC-IBA Business Case Competition 2023/24.</div>
             </div>
           </div>
-
-          <div class="slbl" contenteditable="true">Core Capabilities</div>
-          <div class="ent-row">
-            <span class="ent-dot dg"></span>
-            <div class="ent" contenteditable="true"><img src="https://logo.clearbit.com/bida.gov.bd" class="org-logo" onerror="this.style.display='none'" alt=""><strong>Primary Research Leadership</strong> — Directed 210+ surveys &amp; 45+ KIIs for BIDA; findings adopted by Bangladesh Parjatan Corporation for national tourism policy reform.</div>
-          </div>
-          <div class="ent-row">
-            <span class="ent-dot dp"></span>
-            <div class="ent" contenteditable="true"><img src="https://logo.clearbit.com/thrive.com.bd" class="org-logo" onerror="this.style.display='none'" alt=""><strong>Integrated Campaign Execution</strong> — Led 5-person team at Thrive EdTech: <span class="metric metric-g">+24% app traffic</span>, <span class="metric metric-g">×10 social reach</span>, <span class="metric metric-g">+20% retention</span> across 15+ campaigns.</div>
-          </div>
-          <div class="ent-row">
-            <span class="ent-dot dg"></span>
-            <div class="ent" contenteditable="true"><img src="https://logo.clearbit.com/prothomalo.com" class="org-logo" onerror="this.style.display='none'" alt=""><strong>Qualitative Fieldwork at Scale</strong> — 200+ Gen-Z participants across 20+ FGDs in 5 cities for Prothom Alo; 400+ students surveyed at IBA for blended-learning policy.</div>
-          </div>
-
-          <div class="slbl" contenteditable="true">Strategic Differentiators</div>
-          <div class="ent" style="margin-bottom:2px" contenteditable="true"><span class="badge badge-p">INSIDER</span><img src="https://logo.clearbit.com/bkash.com" class="org-logo" onerror="this.style.display='none'" alt=""><strong>b-ACE Campus Ambassador, bKash</strong> — Fluent in bnext, GenNEXT &amp; bTechWhiz. Zero ramp-up required.</div>
-          <div class="ent" style="margin-bottom:2px" contenteditable="true"><span class="badge badge-a">CHAMPION</span><img src="https://logo.clearbit.com/hultprize.org" class="org-logo" onerror="this.style.display='none'" alt=""><strong>Hult Prize 2024 National Winner</strong> — Led team to $1M Global Summit, Chulalongkorn University, Bangkok.</div>
-          <div class="ent" contenteditable="true"><span class="badge badge-n">GLOBAL</span><img src="https://logo.clearbit.com/attractor.co.jp" class="org-logo" onerror="this.style.display='none'" alt="">Delegate, <strong>Regional Scrum Gathering Tokyo 2026</strong> (800 attendees). Active contributor to Agile Bangladesh.</div>
         </div>
       </div>
 
       <!-- ═══════ 02 · PRICE ═══════ -->
       <div class="quad quad-a">
-        <div class="quad-inner">
-          <div class="q-head">
-            <span class="q-num">02</span>
-            <div>
-              <div class="q-title" contenteditable="true">Price</div>
-              <div class="q-sub" contenteditable="true">Investment required — value delivered</div>
-            </div>
+        <div class="q-head">
+          <span class="q-num">02</span>
+          <div>
+            <div class="q-title" contenteditable="true">Price</div>
+            <div class="q-sub" contenteditable="true">Investment required — value delivered</div>
           </div>
-
+        </div>
+        <div class="q-body">
           <div class="stats">
             <div class="stat">
-              <div class="stat-n">210<span>+</span></div>
-              <div class="stat-d" contenteditable="true">Surveys &amp; KIIs delivered under real deadlines — field-ready, no training cycle</div>
+              <div class="stat-n" contenteditable="true">210<sup>+</sup></div>
+              <div class="stat-d" contenteditable="true">Surveys &amp; KIIs for BIDA — one of Bangladesh's first full-scale primary demand assessments of national tourism economics</div>
             </div>
             <div class="stat">
-              <div class="stat-n">50<span>K</span></div>
-              <div class="stat-d" contenteditable="true">Community managed at Thrive EdTech with measurable retention outcomes</div>
+              <div class="stat-n" contenteditable="true">50K</div>
+              <div class="stat-d" contenteditable="true">Community managed at Thrive EdTech; 24% app traffic growth, 10× social reach, 20% retention uplift</div>
             </div>
             <div class="stat">
-              <div class="stat-n">18<span>mo</span></div>
-              <div class="stat-d" contenteditable="true">Rapid progression: Ambassador → Delegate → Policy Consultant</div>
+              <div class="stat-n" contenteditable="true">18<sup>mo</sup></div>
+              <div class="stat-d" contenteditable="true">Trajectory: Ambassador → Delegate → Policy Consultant. Every step without prior training.</div>
             </div>
             <div class="stat">
-              <div class="stat-n">20<span>L+</span></div>
-              <div class="stat-d" contenteditable="true">BDT raised for 15K+ children across 64 districts via nationwide campaigns</div>
+              <div class="stat-n" contenteditable="true">20L<sup>+</sup></div>
+              <div class="stat-d" contenteditable="true">BDT raised via 6 nationwide campaigns for 15,000+ children across 64 districts</div>
             </div>
           </div>
-
-          <div class="slbl" contenteditable="true">Compensation Framework</div>
-          <div class="ent" style="margin-bottom:3.5px" contenteditable="true">Aligned to <strong>standard GenNEXT MT band</strong>. Negotiation focused on total value: performance bonus, leadership fast-track, L&amp;D investment, regional rotation.</div>
-
-          <div class="slbl" contenteditable="true">ROI Multipliers</div>
-          <div class="v-row">
-            <span class="v-tag">ZERO RAMP</span>
-            <span class="v-txt" contenteditable="true">12 months embedded in bKash ecosystem — immediate productivity from Day 1.</span>
+          <div class="sec" contenteditable="true">Compensation Framework</div>
+          <div class="e" style="margin-bottom:4px" contenteditable="true">Aligned to <strong>standard GenNEXT MT band</strong>. Negotiation focused on total value: performance bonus · leadership fast-track · L&amp;D investment · regional rotation.</div>
+          <div class="sec" contenteditable="true">ROI Multipliers</div>
+          <div class="rr">
+            <span class="rt">ZERO RAMP</span>
+            <span class="rv" contenteditable="true">12 months embedded in bKash ecosystem — immediate productivity from Day 1.</span>
           </div>
-          <div class="v-row">
-            <span class="v-tag">VOUCHED</span>
-            <span class="v-txt" contenteditable="true"><b>Abu Usuf Md. Rashedul Amin</b>, GM-HR, bKash — on-record referee with warm referral.</span>
+          <div class="rr">
+            <span class="rt">VOUCHED</span>
+            <span class="rv" contenteditable="true"><b>Abu Usuf Md. Rashedul Amin</b>, GM-HR, bKash — on-record referee with warm referral.</span>
           </div>
-          <div class="v-row">
-            <span class="v-tag">NETWORK</span>
-            <span class="v-txt" contenteditable="true">Day-1 access to BIDA, Parjatan Corp, BCRC, Attractor Inc. Japan strategic channels.</span>
+          <div class="rr">
+            <span class="rt">NETWORK</span>
+            <span class="rv" contenteditable="true">Day-1 access: BIDA, Parjatan Corp, BCRC, Attractor Inc. Japan strategic channels.</span>
           </div>
-          <div class="v-row">
-            <span class="v-tag">OUTCOMES</span>
-            <span class="v-txt" contenteditable="true">Every role entered without training — business impact delivered before framework application.</span>
+          <div class="rr">
+            <span class="rt">OUTCOMES</span>
+            <span class="rv" contenteditable="true">Every role entered without training — business impact delivered before framework application.</span>
           </div>
         </div>
       </div>
 
       <!-- ═══════ 03 · PROMOTION ═══════ -->
       <div class="quad quad-n">
-        <div class="quad-inner">
-          <div class="q-head">
-            <span class="q-num">03</span>
-            <div>
-              <div class="q-title" contenteditable="true">Promotion</div>
-              <div class="q-sub" contenteditable="true">How bKash discovers my strategic value</div>
+        <div class="q-head">
+          <span class="q-num">03</span>
+          <div>
+            <div class="q-title" contenteditable="true">Promotion</div>
+            <div class="q-sub" contenteditable="true">How bKash discovers my strategic value</div>
+          </div>
+        </div>
+        <div class="q-body">
+          <div class="q-2c">
+            <div class="q-col">
+              <div class="sec" contenteditable="true">Strategic Channels</div>
+              <div class="cr">
+                <span class="ct">Portfolio</span>
+                <span class="cx" contenteditable="true"><b>linkedin.com/in/billahsiddiki</b> — Published research, conference features, stakeholder impact stories.</span>
+              </div>
+              <div class="cr">
+                <span class="ct">Referral</span>
+                <span class="cx" contenteditable="true"><b>Abu Usuf Md. Rashedul Amin</b>, GM-HR, bKash — Warm referral on record with hiring committee.</span>
+              </div>
+              <div class="cr">
+                <span class="ct">Academic</span>
+                <span class="cx" contenteditable="true"><b>Prof. Dr. M. Ridhwanul Haq</b>, BCRC Chairman — Professional referee for strategic consulting capabilities.</span>
+              </div>
+              <div class="sec" contenteditable="true">Interview Differentiation</div>
+              <div class="e" contenteditable="true">Live application of STP, 4P &amp; MECE frameworks drawn from real fieldwork — not theoretical case prep. Outcomes-first mindset validated across 8+ professional engagements.</div>
+            </div>
+            <div class="q-col">
+              <div class="sec" contenteditable="true">Evidence of Impact</div>
+              <div class="cr">
+                <span class="ct">Policy</span>
+                <span class="cx" contenteditable="true"><img src="https://logo.clearbit.com/bida.gov.bd" class="ol" onerror="this.style.display='none'" alt="BIDA"> BIDA national tourism demand study (210+ surveys) → delivered to Executive Chairman → enabled investment policy reform.</span>
+              </div>
+              <div class="cr">
+                <span class="ct">Research</span>
+                <span class="cx" contenteditable="true"><img src="https://logo.clearbit.com/bcrcbd.org" class="ol" onerror="this.style.display='none'" alt="BCRC"> BCRC case studies: ekShop, Shyamoli, KOW + Singapore AI white paper on conversational AI deployment.</span>
+              </div>
+              <div class="cr">
+                <span class="ct">Social</span>
+                <span class="cx" contenteditable="true">Jhilimili Campaign Lead — <b>BDT 20 Lac+</b> raised for 15,000+ children across 64 districts affected by Cyclone Remal &amp; July Uprising.</span>
+              </div>
+              <div class="cr">
+                <span class="ct">Won</span>
+                <span class="cx" contenteditable="true"><img src="https://logo.clearbit.com/hultprize.org" class="ol" onerror="this.style.display='none'" alt="Hult"> <b>Hult Prize 2024 National Champion</b> — Led winning team; qualified for $1M Global Summit, Bangkok.</span>
+              </div>
             </div>
           </div>
-
-          <div class="slbl" contenteditable="true">Strategic Channels</div>
-          <div class="ch-row">
-            <span class="ch-tag">Portfolio</span>
-            <span class="ch-txt" contenteditable="true"><b>linkedin.com/in/billahsiddiki</b> — Published research, conference features, stakeholder impact stories.</span>
-          </div>
-          <div class="ch-row">
-            <span class="ch-tag">Referral</span>
-            <span class="ch-txt" contenteditable="true"><b>Abu Usuf Md. Rashedul Amin</b>, GM-HR, bKash — Warm referral on record with hiring committee.</span>
-          </div>
-          <div class="ch-row">
-            <span class="ch-tag">Academic</span>
-            <span class="ch-txt" contenteditable="true"><b>Prof. Dr. M. Ridhwanul Haq</b>, BCRC Chairman — Professional referee for strategic consulting capabilities.</span>
-          </div>
-
-          <div class="slbl" contenteditable="true">Evidence of Impact</div>
-          <div class="ch-row">
-            <span class="ch-tag">Policy</span>
-            <span class="ch-txt" contenteditable="true"><img src="https://logo.clearbit.com/bida.gov.bd" class="org-logo" onerror="this.style.display='none'" alt=""> BIDA national tourism demand study (210+ surveys) → delivered to Executive Chairman → enabled investment policy reform.</span>
-          </div>
-          <div class="ch-row">
-            <span class="ch-tag">Research</span>
-            <span class="ch-txt" contenteditable="true"><img src="https://logo.clearbit.com/bcrcbd.org" class="org-logo" onerror="this.style.display='none'" alt=""> BCRC case studies: ekShop (e-commerce), Shyamoli (transport), KOW (BPO) + Singapore AI white paper.</span>
-          </div>
-          <div class="ch-row">
-            <span class="ch-tag">Social</span>
-            <span class="ch-txt" contenteditable="true">Jhilimili Campaign Lead — <b>BDT 20 Lac+</b> raised for 15,000+ children across 64 districts affected by Cyclone Remal &amp; July Uprising.</span>
-          </div>
-
-          <div class="slbl" contenteditable="true">Interview Differentiation</div>
-          <div class="ent" contenteditable="true">Live application of STP, 4P &amp; MECE frameworks drawn from real fieldwork — not theoretical case prep. Outcomes-first mindset validated across 8+ professional engagements.</div>
         </div>
       </div>
 
       <!-- ═══════ 04 · PLACE ═══════ -->
       <div class="quad quad-b">
-        <div class="quad-inner">
-          <div class="q-head">
-            <span class="q-num">04</span>
-            <div>
-              <div class="q-title" contenteditable="true">Place</div>
-              <div class="q-sub" contenteditable="true">Where and how I will create value</div>
+        <div class="q-head">
+          <span class="q-num">04</span>
+          <div>
+            <div class="q-title" contenteditable="true">Place</div>
+            <div class="q-sub" contenteditable="true">Where and how I will create value</div>
+          </div>
+        </div>
+        <div class="q-body">
+          <div class="q-2c">
+            <div class="q-col">
+              <div class="sec" contenteditable="true">Primary Target</div>
+              <div class="e" style="margin-bottom:4px" contenteditable="true"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTExMyIgdmlld0JveD0iMTEuMjE5OTk5OTk5OTk5OTk1IDEwLjcgNDU4LjA4MDAwMDAwMDAwMDA0IDIwOS41OCIgd2lkdGg9IjI1MDAiPgogIDxwYXRoIGQ9Ik0zMjcuOTkgMTEwLjc1bDEyLjk5IDU4LjQgODUuMDEtNDMuMDR6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTM1Mi4xNiAyMy40OEwzMjggMTEwLjc2bDk4LjAxIDE1LjM1eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNDguMzEgMTAuN2wxMDEuMzggMTIuMTEtMjMuOTcgODYuNzZ6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTI0Ny41MiAyNy43NmgxMS4yOWwzMS42NyA0MC41eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00MjguNjkgMTI1LjU1bC0yOS40Ni00MC43NyA0Ny42Ni04LjUzeiIgZmlsbD0iI2QxMjA1MyIvPgogIDxwYXRoIGQ9Ik00MjMuNzcgMTM3LjVsMy4wNC05LjA3LTc0LjM5IDM3Ljc0eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0zMjUuOTEgMTEzLjA1bDE1LjUyIDY5Ljc3LTQ2LjA2IDM3LjQ2eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00NDIuMjUgOTYuOTdsMjcuMDUtLjQ2LTE5LjU1LTE5Ljg5eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNTUuMTMgOTQuMTh2Ny41M2MtMi43Ni00LjM1LTEwLjUyLTcuMjItMTQuOC02LjYycy0xMSA0LjE0LTE0LjY1IDEyQzIyMS42OCA5OC44MiAyMTQgOTQgMjA4LjI3IDk0aC0xNy43OHY4Ljg0aDExLjU4YzUuMTIgMCAxMC40Ni0uNTIgMTUuMjQgMy44M2ExMS43NiAxMS43NiAwIDAgMSAzLjQ2IDYuN2MxLjQ3IDYuODYtMS41NCAxNS4wOS05LjUxIDE1LjI5YTI0LjYzIDI0LjYzIDAgMCAxLTcuNDktLjg3bC0uNjEuNjNhNjYuNDggNjYuNDggMCAwIDEgNC45MSA4LjE3IDI1LjIxIDI1LjIxIDAgMCAwIDEyLjU2LTYuODIgMjQuMDkgMjQuMDkgMCAwIDAgNS4wNS03LjEyIDI0LjI2IDI0LjI2IDAgMCAwIDQuNDkgNy4xMiAyMi4zNiAyMi4zNiAwIDAgMCAxMS4zMiA2LjgyIDY5LjggNjkuOCAwIDAgMSA0LjQyLTguMTdsLS41NC0uNjNhMjAuMDcgMjAuMDcgMCAwIDEtNi43NC44N2MtOC4yNS0uMjMtOS43Ni04LjY5LTguNDgtMTUuMjkgMS4xMS01LjYyIDYuMTEtMTEuMTUgMTEtMTEuNTYgNS40OS0uNDUgMTIuMTkgNC4xOCAxMy41NSA5Ljg1YTQxLjg1IDQxLjg1IDAgMCAxIDEgOS40N3Y1MS40OWEzNSAzNSAwIDAgMSAzLjk0LS4zOCAzMy43IDMzLjcgMCAwIDEgNCAuMzhWOTQuMTh6IiBmaWxsPSIjMjMxZjIwIi8+CiAgPHBhdGggZD0iTTQyLjM0IDY0LjI5YzEzLjkxLTEuMzkgMzUuMjcgMTYuNTYgMzcgMjAuNDhsMS4zMi0uMjFWNzQuMjVjLTkuNzctNS4xNy0yMy40MS0xNS43OS00MS41LTE0LjQ5LTIwLjA3IDEuNDQtMjcuOTIgMTMuMjQtMjcuOTQgMzRWMTcyLjY3YTI2LjM5IDI2LjM5IDAgMCAxIDMuNzctLjQxIDM2LjUgMzYuNSAwIDAgMSA0LjI3LjQxdi02OS43OWg1My4zNnY1LjczYy0yOS4yOS41NC00MiAxNi44Ny00MiAzMC45IDAgMTcuMSAxNy42NiAzMy4xNyA0OC42OCAzMy4xN2gxLjM3Vjk0SDIwbC0uMS0uMThhMjAuNjEgMjAuNjEgMCAwIDEtLjYxLTQuNjZDMTkuMTggNzUuODcgMjggNjUuNjkgNDIuMzQgNjQuMjl6TTQxLjA5IDE0MGMwLTEyLjM0IDEzLjY3LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjA5QzUzIDE2NiA0MS4wOSAxNTAuNiA0MS4wOSAxNDB6IiBmaWxsPSIjZTIxMzZlIi8+CiAgPHBhdGggZD0iTTgyLjc1IDk0djguODVoNTQuODh2NS43M2MtMjkuMjkuNTQtNDIgMTYuODctNDIgMzAuOSAwIDE3LjEgMTcuNjcgMzMuMTcgNDguNjcgMzMuMTdoMS4zNnYtNTguMzJoLjg1YzkuODUtLjI3IDE1Ljc0IDYgMTYuMDUgMTQuMDVhMTMuMzQgMTMuMzQgMCAwIDEtOC42OSAxMy4wOWwuMDYgMS4xOSA3LjQ4LS4yMmM0LjE4LTUuMjkgNi44OS0xMS4xOSA2LjYyLTE3LjU2LS40Ni0xMS4xMS03Ljg4LTE2LjQtMjIuMzctMTYuMnYtNS43NWgzNC43NXY2OS43OWEyOC4xIDI4LjEgMCAwIDEgMy45My0uNDEgMzQuNjIgMzQuNjIgMCAwIDEgNC4xLjQxVjk0em0yMy4zNSA0NmMwLTEyLjM0IDEzLjY4LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjFDMTE4IDE2NiAxMDYuMSAxNTAuNiAxMDYuMSAxNDB6IiBmaWxsPSIjMjMxZjIwIi8+Cjwvc3ZnPg==" class="ol" alt="bKash"> <strong>bKash Limited — Dhaka HQ.</strong> Brand &amp; Customer Marketing, Consumer Insights, or CVM. The role I seek is the one I have prepared for — from the inside.</div>
+              <div class="sec" contenteditable="true">Best-Fit Functions</div>
+              <div class="er">
+                <span class="dot db"></span>
+                <div class="e" contenteditable="true"><strong>Brand &amp; Campaign Strategy</strong> — Maps to: Thrive campaigns, The Prestige Global stakeholder management, BCRC research.</div>
+              </div>
+              <div class="er">
+                <span class="dot db"></span>
+                <div class="e" contenteditable="true"><strong>Consumer Insight &amp; Research</strong> — Maps to: BIDA national demand study, Prothom Alo Gen-Z fieldwork, IBA blended-learning research.</div>
+              </div>
+              <div class="sec" contenteditable="true">MT Rotation Appetite</div>
+              <div style="margin-bottom:3px">
+                <span class="ftag" contenteditable="true">Product Marketing</span>
+                <span class="ftag" contenteditable="true">MFS Partnerships</span>
+                <span class="ftag" contenteditable="true">Corporate Strategy</span>
+                <span class="ftag" contenteditable="true">Policy &amp; Regulatory</span>
+              </div>
+            </div>
+            <div class="q-col">
+              <div class="sec" contenteditable="true">Geographic Flexibility</div>
+              <div class="e" style="margin-bottom:4px" contenteditable="true">Bangladesh-first; open to South/Southeast Asia secondment. International exposure: <strong>Tokyo · Bangkok · Singapore</strong>.</div>
+              <div class="sec" contenteditable="true">Availability</div>
+              <div class="avail">
+                <span class="avail-tick">✓</span>
+                <div>
+                  <span class="avail-main" contenteditable="true">August 2026 (Graduation)</span>
+                  <span class="avail-sub" contenteditable="true">Pre-hire intake or internship from May 2026 onward.</span>
+                </div>
+              </div>
+              <div class="e" contenteditable="true">Preference: <strong>in-person, client-facing</strong>. Fieldwork is a strategic competency — actively sought, never avoided.</div>
+              <div class="sec" contenteditable="true">Proficiencies</div>
+              <div class="e" contenteditable="true">Data: SQL · Python · Power BI · Tableau &nbsp;|&nbsp; Design: Figma · Illustrator · Canva &nbsp;|&nbsp; PM: Notion · Trello · Agile</div>
             </div>
           </div>
-
-          <div class="slbl" contenteditable="true">Primary Target</div>
-          <div class="ent" style="margin-bottom:4px" contenteditable="true"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMTExMyIgdmlld0JveD0iMTEuMjE5OTk5OTk5OTk5OTk1IDEwLjcgNDU4LjA4MDAwMDAwMDAwMDA0IDIwOS41OCIgd2lkdGg9IjI1MDAiPgogIDxwYXRoIGQ9Ik0zMjcuOTkgMTEwLjc1bDEyLjk5IDU4LjQgODUuMDEtNDMuMDR6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTM1Mi4xNiAyMy40OEwzMjggMTEwLjc2bDk4LjAxIDE1LjM1eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNDguMzEgMTAuN2wxMDEuMzggMTIuMTEtMjMuOTcgODYuNzZ6IiBmaWxsPSIjZDEyMDUzIi8+CiAgPHBhdGggZD0iTTI0Ny41MiAyNy43NmgxMS4yOWwzMS42NyA0MC41eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00MjguNjkgMTI1LjU1bC0yOS40Ni00MC43NyA0Ny42Ni04LjUzeiIgZmlsbD0iI2QxMjA1MyIvPgogIDxwYXRoIGQ9Ik00MjMuNzcgMTM3LjVsMy4wNC05LjA3LTc0LjM5IDM3Ljc0eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0zMjUuOTEgMTEzLjA1bDE1LjUyIDY5Ljc3LTQ2LjA2IDM3LjQ2eiIgZmlsbD0iIzllMTYzOCIvPgogIDxwYXRoIGQ9Ik00NDIuMjUgOTYuOTdsMjcuMDUtLjQ2LTE5LjU1LTE5Ljg5eiIgZmlsbD0iI2UyMTM2ZSIvPgogIDxwYXRoIGQ9Ik0yNTUuMTMgOTQuMTh2Ny41M2MtMi43Ni00LjM1LTEwLjUyLTcuMjItMTQuOC02LjYycy0xMSA0LjE0LTE0LjY1IDEyQzIyMS42OCA5OC44MiAyMTQgOTQgMjA4LjI3IDk0aC0xNy43OHY4Ljg0aDExLjU4YzUuMTIgMCAxMC40Ni0uNTIgMTUuMjQgMy44M2ExMS43NiAxMS43NiAwIDAgMSAzLjQ2IDYuN2MxLjQ3IDYuODYtMS41NCAxNS4wOS05LjUxIDE1LjI5YTI0LjYzIDI0LjYzIDAgMCAxLTcuNDktLjg3bC0uNjEuNjNhNjYuNDggNjYuNDggMCAwIDEgNC45MSA4LjE3IDI1LjIxIDI1LjIxIDAgMCAwIDEyLjU2LTYuODIgMjQuMDkgMjQuMDkgMCAwIDAgNS4wNS03LjEyIDI0LjI2IDI0LjI2IDAgMCAwIDQuNDkgNy4xMiAyMi4zNiAyMi4zNiAwIDAgMCAxMS4zMiA2LjgyIDY5LjggNjkuOCAwIDAgMSA0LjQyLTguMTdsLS41NC0uNjNhMjAuMDcgMjAuMDcgMCAwIDEtNi43NC44N2MtOC4yNS0uMjMtOS43Ni04LjY5LTguNDgtMTUuMjkgMS4xMS01LjYyIDYuMTEtMTEuMTUgMTEtMTEuNTYgNS40OS0uNDUgMTIuMTkgNC4xOCAxMy41NSA5Ljg1YTQxLjg1IDQxLjg1IDAgMCAxIDEgOS40N3Y1MS40OWEzNSAzNSAwIDAgMSAzLjk0LS4zOCAzMy43IDMzLjcgMCAwIDEgNCAuMzhWOTQuMTh6IiBmaWxsPSIjMjMxZjIwIi8+CiAgPHBhdGggZD0iTTQyLjM0IDY0LjI5YzEzLjkxLTEuMzkgMzUuMjcgMTYuNTYgMzcgMjAuNDhsMS4zMi0uMjFWNzQuMjVjLTkuNzctNS4xNy0yMy40MS0xNS43OS00MS41LTE0LjQ5LTIwLjA3IDEuNDQtMjcuOTIgMTMuMjQtMjcuOTQgMzRWMTcyLjY3YTI2LjM5IDI2LjM5IDAgMCAxIDMuNzctLjQxIDM2LjUgMzYuNSAwIDAgMSA0LjI3LjQxdi02OS43OWg1My4zNnY1LjczYy0yOS4yOS41NC00MiAxNi44Ny00MiAzMC45IDAgMTcuMSAxNy42NiAzMy4xNyA0OC42OCAzMy4xN2gxLjM3Vjk0SDIwbC0uMS0uMThhMjAuNjEgMjAuNjEgMCAwIDEtLjYxLTQuNjZDMTkuMTggNzUuODcgMjggNjUuNjkgNDIuMzQgNjQuMjl6TTQxLjA5IDE0MGMwLTEyLjM0IDEzLjY3LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjA5QzUzIDE2NiA0MS4wOSAxNTAuNiA0MS4wOSAxNDB6IiBmaWxsPSIjZTIxMzZlIi8+CiAgPHBhdGggZD0iTTgyLjc1IDk0djguODVoNTQuODh2NS43M2MtMjkuMjkuNTQtNDIgMTYuODctNDIgMzAuOSAwIDE3LjEgMTcuNjcgMzMuMTcgNDguNjcgMzMuMTdoMS4zNnYtNTguMzJoLjg1YzkuODUtLjI3IDE1Ljc0IDYgMTYuMDUgMTQuMDVhMTMuMzQgMTMuMzQgMCAwIDEtOC42OSAxMy4wOWwuMDYgMS4xOSA3LjQ4LS4yMmM0LjE4LTUuMjkgNi44OS0xMS4xOSA2LjYyLTE3LjU2LS40Ni0xMS4xMS03Ljg4LTE2LjQtMjIuMzctMTYuMnYtNS43NWgzNC43NXY2OS43OWEyOC4xIDI4LjEgMCAwIDEgMy45My0uNDEgMzQuNjIgMzQuNjIgMCAwIDEgNC4xLjQxVjk0em0yMy4zNSA0NmMwLTEyLjM0IDEzLjY4LTI0LjE3IDMxLjUzLTI2Ljc0djU2LjFDMTE4IDE2NiAxMDYuMSAxNTAuNiAxMDYuMSAxNDB6IiBmaWxsPSIjMjMxZjIwIi8+Cjwvc3ZnPg==" class="org-logo" alt="bKash"><strong>bKash Limited — Dhaka HQ.</strong> Brand &amp; Customer Marketing, Consumer Insights, or CVM. The role I seek is the one I have prepared for — from the inside.</div>
-
-          <div class="slbl" contenteditable="true">Best-Fit Functions</div>
-          <div class="ent-row">
-            <span class="ent-dot db"></span>
-            <div class="ent" contenteditable="true"><strong>Brand &amp; Campaign Strategy</strong> — Direct mapping: Thrive EdTech campaigns, The Prestige Global stakeholder management, BCRC research synthesis.</div>
-          </div>
-          <div class="ent-row">
-            <span class="ent-dot db"></span>
-            <div class="ent" contenteditable="true"><strong>Consumer Insight &amp; Research</strong> — Direct mapping: BIDA national demand study, Prothom Alo Gen-Z fieldwork, IBA blended-learning research.</div>
-          </div>
-          <div class="ent" style="margin-left:9px;font-size:5.2pt;color:var(--i40);margin-bottom:4px" contenteditable="true">Open to MT rotations: Product Marketing · MFS Partnerships · Corporate Strategy · Policy &amp; Regulatory Affairs</div>
-
-          <div class="slbl" contenteditable="true">Geographic Flexibility</div>
-          <div class="ent" style="margin-bottom:4px" contenteditable="true">Bangladesh-first; open to regional secondment across South/Southeast Asia. International exposure: <strong>Tokyo · Bangkok · Singapore</strong>.</div>
-
-          <div class="slbl" contenteditable="true">Availability</div>
-          <div class="avail">
-            <span class="avail-tick">✓</span>
-            <div>
-              <span class="avail-main" contenteditable="true">August 2026 (Graduation)</span>
-              <span class="avail-sub" contenteditable="true">Open to pre-hire GenNEXT intake or internship from May 2026 onward.</span>
-            </div>
-          </div>
-          <div class="ent" contenteditable="true">Preference: <strong>in-person, client-facing</strong> roles. Fieldwork is a strategic competency — actively sought, never avoided.</div>
         </div>
       </div>
 
@@ -683,7 +692,7 @@ html{background:#D8D8D8;-webkit-font-smoothing:antialiased;text-rendering:optimi
   document.designMode = "on";
   
   // Save HTML
-  document.getElementById('downloadHtml').addEventListener('click', function() {
+  document.getElementById('saveHtml').addEventListener('click', function() {
     const banner = document.querySelector('.edit-banner');
     banner.style.display = 'none';
     const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
@@ -699,58 +708,54 @@ html{background:#D8D8D8;-webkit-font-smoothing:antialiased;text-rendering:optimi
     banner.style.display = 'flex';
   });
 
-  // PDF Export with jsPDF + html2canvas
-  document.getElementById('downloadPdf').addEventListener('click', async function() {
+  // PDF Export
+  document.getElementById('exportPdf').addEventListener('click', async function() {
     const overlay = document.getElementById('pdfOverlay');
     const confirmBtn = document.getElementById('confirmPdf');
     const cancelBtn = document.getElementById('cancelPdf');
     
-    // Show modal
     overlay.classList.add('show');
-    confirmBtn.textContent = 'Preparing PDF…';
+    confirmBtn.textContent = 'Rendering…';
     confirmBtn.disabled = true;
     
     try {
-      // Hide edit banner for clean capture
+      // Hide UI elements for clean capture
       const banner = document.querySelector('.edit-banner');
       banner.style.display = 'none';
       
-      // Capture the page at high resolution
+      // Capture with high DPI
       const canvas = await html2canvas(document.getElementById('pageContent'), {
-        scale: 3, // 3x for print-quality 300 DPI
+        scale: 4, // High-res for print
         useCORS: true,
         backgroundColor: '#ffffff',
         logging: false,
-        windowWidth: 297 * 3.78, // 297mm * 3.78 = pixels at 96 DPI
-        windowHeight: 210 * 3.78
+        windowWidth: 794, // A4 width in pixels at 96 DPI
+        windowHeight: 1123 // A4 height in pixels at 96 DPI
       });
       
-      // Restore banner
+      // Restore UI
       banner.style.display = 'flex';
       
       // Create PDF
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({
-        orientation: 'landscape',
+        orientation: 'portrait',
         unit: 'mm',
-        format: [297, 210] // A4 landscape in mm
+        format: 'a4'
       });
       
       const imgData = canvas.toDataURL('image/png');
-      const pdfWidth = 297;
-      const pdfHeight = 210;
-      
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save('4Ps_Strategic_Profile.pdf');
+      pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
+      pdf.save('4Ps_Strategic_Profile_Print.pdf');
       
       // Update modal
       confirmBtn.textContent = '✓ Downloaded';
       confirmBtn.disabled = false;
-      setTimeout(() => overlay.classList.remove('show'), 1500);
+      setTimeout(() => overlay.classList.remove('show'), 1800);
       
     } catch (err) {
       console.error('PDF export failed:', err);
-      confirmBtn.textContent = 'Error — Try Again';
+      confirmBtn.textContent = 'Error — Retry';
       confirmBtn.disabled = false;
       document.querySelector('.edit-banner').style.display = 'flex';
     }
@@ -762,11 +767,11 @@ html{background:#D8D8D8;-webkit-font-smoothing:antialiased;text-rendering:optimi
     document.querySelector('.edit-banner').style.display = 'flex';
   });
 
-  // Ctrl+S shortcut for HTML save
+  // Ctrl+S shortcut
   document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.key === 's') {
       e.preventDefault();
-      document.getElementById('downloadHtml').click();
+      document.getElementById('saveHtml').click();
     }
   });
 </script>
